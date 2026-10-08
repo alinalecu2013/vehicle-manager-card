@@ -42,6 +42,17 @@ gestioneze, deci primesti actualizarile cardului separat, in HACS.
 type: custom:vehicle-manager-card
 ```
 
+Pentru pagina principala de pe telefon exista **modul compact** (masina + actele cele
+mai urgente):
+
+<p align="center"><img src="https://raw.githubusercontent.com/alinalecu2013/vehicle-manager-card/main/images/compact.png" alt="Modul compact pe telefon" width="380"></p>
+
+```yaml
+type: custom:vehicle-manager-card
+compact: true
+navigation_path: /lovelace/masini   # optional
+```
+
 Toate optiunile si functiile sunt descrise in
 [documentatia integrarii](https://github.com/alinalecu2013/ha-vehicle-manager#cardul).
 
