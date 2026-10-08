@@ -1,0 +1,6 @@
+{
+  "name": "Vehicle Manager Card",
+  "filename": "vehicle-manager-card.js",
+  "homeassistant": "2024.7.0",
+  "render_readme": true
+}
