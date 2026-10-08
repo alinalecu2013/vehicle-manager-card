@@ -5,6 +5,16 @@ Card Lovelace pentru integrarea
 model 3D rotativ al masinii, caracteristici si acte (RCA, ITP, rovinieta, revizie,
 distributie), cu meniu **Themes** (culori, fonturi, aspect, imagine de fundal).
 
+![Vehicle Manager Card](https://raw.githubusercontent.com/alinalecu2013/vehicle-manager-card/main/images/card.png)
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/alinalecu2013/vehicle-manager-card/main/images/phone.png" alt="Cardul pe telefon (tema Sunset)" width="300">
+  &nbsp;
+  <img src="https://raw.githubusercontent.com/alinalecu2013/vehicle-manager-card/main/images/themes.png" alt="Meniul Themes" width="520">
+</p>
+
+<sub>Capturi cu date demonstrative.</sub>
+
 > **Necesita integrarea Vehicle Manager.** Cardul afiseaza datele vehiculelor si
 > salveaza tema prin integrare; singur nu are ce afisa.
 
