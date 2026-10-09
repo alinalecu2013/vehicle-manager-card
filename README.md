@@ -3,7 +3,8 @@
 Card Lovelace pentru integrarea
 [Vehicle Manager](https://github.com/alinalecu2013/ha-vehicle-manager):
 model 3D rotativ al masinii, caracteristici si acte (RCA, ITP, rovinieta, revizie,
-distributie), cu meniu **Themes** (culori, fonturi, aspect, imagine de fundal).
+distributie), cu meniu **Themes** (culori, fonturi, aspect, imagine de fundal) si istoric de
+**Costuri** (cheltuieli pe categorii si pe ani).
 
 ![Vehicle Manager Card](https://raw.githubusercontent.com/alinalecu2013/vehicle-manager-card/main/images/card.png)
 
