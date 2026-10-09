@@ -6,7 +6,7 @@
  * model 3D rotativ in centru, acte in dreapta.
  */
 
-const CARD_VERSION = "2.1.0";
+const CARD_VERSION = "2.2.0";
 const DEFAULT_THREE = "https://esm.sh/three@0.160.0";
 
 /* ------------------------------------------------------------------ */
@@ -44,75 +44,83 @@ function t(text, vars) {
 }
 
 const EN = {
+  "Automat (după marca și model)": "Automatic (from make and model)",
+  "Break": "Estate",
+  "Coupe": "Coupe",
+  "Caroseria mașinii desenate (fără model 3D)": "Body style of the drawn car (no 3D model)",
+  "Urmează": "Next",
+  "Închide": "Close",
+  "zi": "day",
+  "zile": "days",
   "Limba": "Language",
   "Limba cardurilor": "Card language",
   "Automat (limba din Home Assistant)": "Automatic (Home Assistant language)",
   "Valabil": "Valid",
-  "Expira curand": "Expiring soon",
+  "Expiră curând": "Expiring soon",
   "Expirat": "Expired",
   "Necompletat": "Not set",
   "RCA": "Insurance (RCA)",
   "ITP": "Inspection (ITP)",
-  "Rovinieta": "Road tax",
+  "Rovinietă": "Road tax",
   "CASCO": "CASCO",
   "Revizie": "Service",
-  "Distributie": "Timing belt",
-  "Trusa medicala": "First aid kit",
+  "Distribuție": "Timing belt",
+  "Trusă medicală": "First aid kit",
   "Extinctor": "Fire extinguisher",
   "Impozit auto": "Vehicle tax",
   "Schimb anvelope": "Tyre change",
   "Marca": "Make",
   "Model": "Model",
-  "An fabricatie": "Year",
+  "An fabricație": "Year",
   "Kilometraj": "Mileage",
   "Culoare": "Color",
   "Capacitate motor": "Engine",
   "Combustibil": "Fuel",
-  "Nr. inmatriculare": "License plate",
+  "Nr. înmatriculare": "License plate",
   "Parcare": "Parking",
-  "Benzina": "Petrol",
+  "Benzină": "Petrol",
   "Diesel": "Diesel",
   "GPL": "LPG",
-  "Benzina + GPL": "Petrol + LPG",
+  "Benzină + GPL": "Petrol + LPG",
   "Hibrid": "Hybrid",
   "Hibrid plug-in": "Plug-in hybrid",
   "Electric": "Electric",
   "Altul": "Other",
   "azi": "today",
-  "maine": "tomorrow",
+  "mâine": "tomorrow",
   "{n} zile": "{n} days",
   "expirat de {n} z": "expired {n} d ago",
-  "depasit {km} km": "{km} km overdue",
+  "depășit {km} km": "{km} km overdue",
   "chiar acum": "just now",
   "acum {n} min": "{n} min ago",
   "acum {n} h": "{n} h ago",
   "ieri": "yesterday",
   "acum {n} zile": "{n} days ago",
   "expirat acum {n} zile": "expired {n} days ago",
-  "{n} zile ramase": "{n} days left",
-  "depasit cu {km} km": "{km} km overdue",
-  "{km} km ramasi": "{km} km left",
-  "fara scadenta setata": "no due date set",
-  "in mers": "driving",
-  "parcata": "parked",
-  "Reparatii": "Repairs",
+  "{n} zile rămase": "{n} days left",
+  "depășit cu {km} km": "{km} km overdue",
+  "{km} km rămași": "{km} km left",
+  "fără scadență setată": "no due date set",
+  "în mers": "driving",
+  "parcată": "parked",
+  "Reparații": "Repairs",
   "Anvelope": "Tyres",
-  "Spalare": "Car wash",
+  "Spălare": "Car wash",
   "Amenzi": "Fines",
-  "Taxe si impozit": "Taxes",
+  "Taxe și impozit": "Taxes",
   "Accesorii": "Accessories",
   "Altele": "Other",
-  "Alte documente (talon, cartea masinii...)": "Other documents (registration, vehicle book...)",
+  "Alte documente (talon, cartea mașinii...)": "Other documents (registration, vehicle book...)",
   "Culori": "Colors",
-  "Foloseste culorile temei Home Assistant": "Use the Home Assistant theme colors",
+  "Folosește culorile temei Home Assistant": "Use the Home Assistant theme colors",
   "Accent principal": "Primary accent",
   "Accent secundar": "Secondary accent",
   "Fundal": "Background",
   "Panouri": "Panels",
   "Text secundar": "Secondary text",
-  "Linii si contururi": "Lines and borders",
+  "Linii și contururi": "Lines and borders",
   "Stare: valabil": "Status: valid",
-  "Stare: expira curand": "Status: expiring soon",
+  "Stare: expiră curând": "Status: expiring soon",
   "Stare: expirat": "Status: expired",
   "Futurist (implicit)": "Futuristic (default)",
   "Fontul Home Assistant": "Home Assistant font",
@@ -120,127 +128,127 @@ const EN = {
   "Rotunjit": "Rounded",
   "Dimensiune font": "Font size",
   "Aspect": "Layout",
-  "Spatiere": "Spacing",
-  "Rotunjire colturi": "Corner radius",
+  "Spațiere": "Spacing",
+  "Rotunjire colțuri": "Corner radius",
   "Opacitate panouri": "Panel opacity",
   "Estompare panouri": "Panel blur",
-  "Intensitate stralucire": "Glow intensity",
+  "Intensitate strălucire": "Glow intensity",
   "Grila de fundal": "Background grid",
   "Scena 3D": "3D scene",
-  "Inaltime scena": "Scene height",
+  "Înălțime scena": "Scene height",
   "Imagine de fundal": "Background image",
   "Imagine": "Image",
-  "Unde se afiseaza": "Shown on",
+  "Unde se afișează": "Shown on",
   "Tot cardul": "Whole card",
   "Doar scena 3D": "3D scene only",
-  "Incadrare": "Fit",
+  "Încadrare": "Fit",
   "Umple": "Cover",
-  "Potriveste": "Contain",
+  "Potrivește": "Contain",
   "Mozaic": "Tile",
-  "Pozitie": "Position",
+  "Poziție": "Position",
   "Centru": "Center",
   "Sus": "Top",
   "Jos": "Bottom",
   "Acoperire cu culoarea de fundal": "Background color overlay",
   "Estompare imagine": "Image blur",
-  "Modificarile se vad imediat; apasa Salveaza ca sa le pastrezi pe toate dispozitivele.": "Changes apply instantly; press Save to keep them on all devices.",
+  "Modificările se văd imediat; apasă Salvează ca să le păstrezi pe toate dispozitivele.": "Changes apply instantly; press Save to keep them on all devices.",
   "Implicit": "Default",
-  "Renunta": "Cancel",
-  "Salveaza": "Save",
-  "Se salveaza...": "Saving...",
-  "Tema nu a putut fi salvata: {err}": "The theme could not be saved: {err}",
-  "Serverul ruleaza o versiune veche a integrarii (fara Themes). Copiaza tot folderul custom_components/vehicle_manager, inclusiv theme.py, si restarteaza Home Assistant.": "The server runs an old version of the integration (without Themes). Update the integration and restart Home Assistant.",
-  "fara imagine": "no image",
-  "Incarca imagine": "Upload image",
-  "Elimina": "Remove",
+  "Renunță": "Cancel",
+  "Salvează": "Save",
+  "Se salvează...": "Saving...",
+  "Tema nu a putut fi salvată: {err}": "The theme could not be saved: {err}",
+  "Serverul rulează o versiune veche a integrării (fără Themes). Copiază tot folderul custom_components/vehicle_manager, inclusiv theme.py, și restartează Home Assistant.": "The server runs an old version of the integration (without Themes). Update the integration and restart Home Assistant.",
+  "fără imagine": "no image",
+  "Încarcă imagine": "Upload image",
+  "Elimină": "Remove",
   "sau un URL: /local/fundal.jpg, https://...": "or a URL: /local/background.jpg, https://...",
-  "URL invalid: trebuie sa inceapa cu / sau https:// si sa nu contina spatii, ghilimele sau paranteze.": "Invalid URL: it must start with / or https:// and contain no spaces, quotes or parentheses.",
-  "Se pregateste imaginea...": "Preparing the image...",
-  "Se incarca imaginea...": "Uploading the image...",
-  "serverul ruleaza o versiune veche a integrarii; copiaza theme.py nou si restarteaza Home Assistant": "the server runs an old version of the integration; update it and restart Home Assistant",
-  "Imagine incarcata. Apasa Salveaza ca sa o pastrezi.": "Image uploaded. Press Save to keep it.",
-  "Imaginea nu a putut fi incarcata: {err}": "The image could not be uploaded: {err}",
-  "Selecteaza vehiculul": "Select vehicle",
+  "URL invalid: trebuie să înceapă cu / sau https:// și să nu conțină spații, ghilimele sau paranteze.": "Invalid URL: it must start with / or https:// and contain no spaces, quotes or parentheses.",
+  "Se pregătește imaginea...": "Preparing the image...",
+  "Se încarcă imaginea...": "Uploading the image...",
+  "serverul rulează o versiune veche a integrării; copiază theme.py nou și restartează Home Assistant": "the server runs an old version of the integration; update it and restart Home Assistant",
+  "Imagine încărcată. Apasă Salvează ca să o păstrezi.": "Image uploaded. Press Save to keep it.",
+  "Imaginea nu a putut fi încărcată: {err}": "The image could not be uploaded: {err}",
+  "Selectează vehiculul": "Select vehicle",
   "Costuri": "Costs",
   "Dosar": "Folder",
-  "Dosarul masinii: polite, talon...": "Vehicle folder: policies, registration...",
-  "Editeaza vehiculele": "Edit vehicles",
+  "Dosarul mașinii: polițe, talon...": "Vehicle folder: policies, registration...",
+  "Editează vehiculele": "Edit vehicles",
   "Deschide pagina vehiculului": "Open the vehicle page",
   "Caracteristici": "Specifications",
   "Poza": "Photo",
-  "Acte si scadente": "Documents and due dates",
-  "Modelul 3D nu a putut fi incarcat (biblioteca three.js nu este accesibila). Adauga o poza vehiculului sau seteaza three_src catre o copie locala.": "The 3D model could not be loaded (three.js is not reachable). Add a photo of the vehicle or point three_src to a local copy.",
+  "Acte și scadențe": "Documents and due dates",
+  "Modelul 3D nu a putut fi încărcat (biblioteca three.js nu este accesibilă). Adaugă o poză vehiculului sau setează three_src către o copie locală.": "The 3D model could not be loaded (three.js is not reachable). Add a photo of the vehicle or point three_src to a local copy.",
   "Vehicul": "Vehicle",
   "model 3d · trage pentru rotire": "3d model · drag to rotate",
-  "randare procedurala · trage pentru rotire": "procedural render · drag to rotate",
-  "Necesita atentie: {list}": "Needs attention: {list}",
-  "Toate actele sunt in regula": "All documents are in order",
+  "randare procedurală · trage pentru rotire": "procedural render · drag to rotate",
+  "Necesită atenție: {list}": "Needs attention: {list}",
+  "Toate actele sunt în regulă": "All documents are in order",
   "prag {days}z / {km}km": "threshold {days}d / {km}km",
-  "Nicio scadenta completata": "No due dates set",
+  "Nicio scadență completată": "No due dates set",
   "Ultimul loc de parcare": "Last parking spot",
-  "Navigheaza pana la masina": "Navigate to the car",
+  "Navighează până la mașina": "Navigate to the car",
   "Preluat automat din senzor": "Read automatically from a sensor",
-  "{n} fisier(e) in dosar": "{n} file(s) in the folder",
-  "Dosarul nu poate fi incarcat (actualizeaza integrarea si restarteaza Home Assistant).": "The folder cannot be loaded (update the integration and restart Home Assistant).",
-  "Se incarca...": "Loading...",
-  "Poze sau PDF-uri cu actele masinii. Se deschid doar din Home Assistant.": "Photos or PDFs of the vehicle documents. They open only from Home Assistant.",
-  "niciun fisier": "no files",
-  "Adauga": "Add",
-  "Sterge": "Delete",
-  "sterge?": "delete?",
-  "Fisierul nu a putut fi sters: {err}": "The file could not be deleted: {err}",
-  "Fisierul nu a putut fi deschis: {err}": "The file could not be opened: {err}",
-  "serverul ruleaza o versiune veche a integrarii": "the server runs an old version of the integration",
-  "Incarcat: {name}.": "Uploaded: {name}.",
-  "Fisierul nu a putut fi incarcat: {err}": "The file could not be uploaded: {err}",
-  "Serverul ruleaza o versiune veche a integrarii (fara Costuri). Actualizeaza integrarea si restarteaza Home Assistant.": "The server runs an old version of the integration (without Costs). Update the integration and restart Home Assistant.",
-  "Costurile nu pot fi incarcate: {err}": "Costs cannot be loaded: {err}",
+  "{n} fișier(e) în dosar": "{n} file(s) in the folder",
+  "Dosarul nu poate fi încărcat (actualizează integrarea și restartează Home Assistant).": "The folder cannot be loaded (update the integration and restart Home Assistant).",
+  "Se încarcă...": "Loading...",
+  "Poze sau PDF-uri cu actele mașinii. Se deschid doar din Home Assistant.": "Photos or PDFs of the vehicle documents. They open only from Home Assistant.",
+  "niciun fișier": "no files",
+  "Adaugă": "Add",
+  "Șterge": "Delete",
+  "șterge?": "delete?",
+  "Fișierul nu a putut fi șters: {err}": "The file could not be deleted: {err}",
+  "Fișierul nu a putut fi deschis: {err}": "The file could not be opened: {err}",
+  "serverul rulează o versiune veche a integrării": "the server runs an old version of the integration",
+  "Încărcat: {name}.": "Uploaded: {name}.",
+  "Fișierul nu a putut fi încărcat: {err}": "The file could not be uploaded: {err}",
+  "Serverul rulează o versiune veche a integrării (fără Costuri). Actualizează integrarea și restartează Home Assistant.": "The server runs an old version of the integration (without Costs). Update the integration and restart Home Assistant.",
+  "Costurile nu pot fi încărcate: {err}": "Costs cannot be loaded: {err}",
   "Perioada": "Period",
-  "Descarca perioada aleasa ca fisier CSV (Excel)": "Download the selected period as a CSV file (Excel)",
+  "Descarcă perioada aleasă ca fișier CSV (Excel)": "Download the selected period as a CSV file (Excel)",
   "Export CSV": "Export CSV",
   "Data": "Date",
   "Categorie": "Category",
   "Suma": "Amount",
-  "Nota": "Note",
-  "optional": "optional",
+  "Notă": "Note",
+  "opțional": "opțional",
   "Cantitate (kWh)": "Quantity (kWh)",
   "Cantitate (l)": "Quantity (l)",
   "Cantitate": "Quantity",
   "Plin complet": "Full tank",
-  "Introdu o suma mai mare decat zero.": "Enter an amount greater than zero.",
-  "Adaugat: {what}, {amount}.": "Added: {what}, {amount}.",
-  "Fara kilometraj, alimentarea nu intra in calculul consumului.": "Without mileage, the fill-up is not used for consumption.",
-  "Cheltuiala nu a putut fi salvata: {err}": "The expense could not be saved: {err}",
-  "Exportul nu a reusit: {err}": "Export failed: {err}",
+  "Introdu o suma mai mare decât zero.": "Enter an amount greater than zero.",
+  "Adăugat: {what}, {amount}.": "Added: {what}, {amount}.",
+  "Fără kilometraj, alimentarea nu intră în calculul consumului.": "Without mileage, the fill-up is not used for consumption.",
+  "Cheltuiala nu a putut fi salvată: {err}": "The expense could not be saved: {err}",
+  "Exportul nu a reușit: {err}": "Export failed: {err}",
   "Sigur?": "Sure?",
-  "Cheltuiala nu a putut fi stearsa: {err}": "The expense could not be deleted: {err}",
+  "Cheltuiala nu a putut fi ștearsă: {err}": "The expense could not be deleted: {err}",
   "Anul {year}": "Year {year}",
-  "Toti anii": "All years",
+  "Toți anii": "All years",
   "Total": "Total",
   "Medie pe an": "Yearly average",
   "Cheltuieli": "Expenses",
   "Total general": "Grand total",
-  "Cheltuieli in an": "Expenses this year",
+  "Cheltuieli în an": "Expenses this year",
   "Consum mediu": "Average consumption",
   "Combustibil pe km": "Fuel per km",
-  "Km masurati": "Measured km",
-  "Nicio cheltuiala in perioada aleasa. Adaug-o din formularul de mai sus.": "No expenses in the selected period. Add one with the form above.",
-  "(partial)": "(partial)",
-  "Sterge (id {id})": "Delete (id {id})",
-  "Inca nu ai inregistrat cheltuieli pentru acest vehicul.": "No expenses recorded for this vehicle yet.",
+  "Km măsurați": "Measured km",
+  "Nicio cheltuiala în perioada aleasă. Adaug-o din formularul de mai sus.": "No expenses in the selected period. Add one with the form above.",
+  "(parțial)": "(parțial)",
+  "Șterge (id {id})": "Delete (id {id})",
+  "Încă nu ai înregistrat cheltuieli pentru acest vehicul.": "No expenses recorded for this vehicle yet.",
   "Titlu (gol = numele vehiculului)": "Title (empty = vehicle name)",
   "Vehicul implicit": "Default vehicle",
-  "Rotire automata": "Auto-rotate",
+  "Rotire automată": "Auto-rotate",
   "Buton comutare poza": "Photo toggle button",
   "Viteza de rotire": "Rotation speed",
   "Buton Themes (culorile se aleg din card)": "Themes button (colors are chosen in the card)",
   "Buton Costuri (istoricul cheltuielilor)": "Costs button (expense history)",
-  "Buton Dosar (poze si PDF-uri cu actele)": "Folder button (photos and PDFs of documents)",
-  "Mod compact (pentru pagina principala)": "Compact mode (for the home page)",
-  "Acte afisate in modul compact": "Documents shown in compact mode",
-  "Pagina deschisa din modul compact (ex. /lovelace/masini)": "Page opened from compact mode (e.g. /lovelace/cars)",
-  "Acte afisate (nimic bifat: cele 5 de baza + actele completate)": "Documents shown (none checked: the 5 basic ones + any filled in)",
-  "Caracteristici afisate (nimic bifat: toate)": "Specifications shown (none checked: all)",
+  "Buton Dosar (poze și PDF-uri cu actele)": "Folder button (photos and PDFs of documents)",
+  "Mod compact (pentru pagina principală)": "Compact mode (for the home page)",
+  "Acte afișate în modul compact": "Documents shown in compact mode",
+  "Pagina deschisă din modul compact (ex. /lovelace/mașini)": "Page opened from compact mode (e.g. /lovelace/cars)",
+  "Acte afișate (nimic bifat: cele 5 de bază + actele completate)": "Documents shown (none checked: the 5 basic ones + any filled in)",
+  "Caracteristici afișate (nimic bifat: toate)": "Specifications shown (none checked: all)",
   "Sursa three.js": "three.js source",
   "Garaj": "Garage",
   "Titlu": "Title",
@@ -249,9 +257,9 @@ const EN = {
   "Consum": "Consumption",
   "Costuri {year}": "Costs {year}",
   "{label} (+{n} acte)": "{label} (+{n} more)",
-  "Niciun vehicul. Adauga unul din Setari › Dispozitive si servicii › Vehicle Manager.": "No vehicles. Add one in Settings › Devices & services › Vehicle Manager.",
-  "Pagina deschisa la atingerea unui vehicul (gol = detaliile vehiculului)": "Page opened when tapping a vehicle (empty = vehicle details)",
-  "Niciun vehicul gasit. Adauga unul din <code>Setari &rsaquo; Dispozitive si servicii &rsaquo; Adauga integrare &rsaquo; Vehicle Manager</code>.": "No vehicle found. Add one in <code>Settings &rsaquo; Devices &amp; services &rsaquo; Add integration &rsaquo; Vehicle Manager</code>."
+  "Niciun vehicul. Adaugă unul din Setări › Dispozitive și servicii › Vehicle Manager.": "No vehicles. Add one in Settings › Devices & services › Vehicle Manager.",
+  "Pagina deschisă la atingerea unui vehicul (gol = detaliile vehiculului)": "Page opened when tapping a vehicle (empty = vehicle details)",
+  "Niciun vehicul găsit. Adaugă unul din <code>Setări &rsaquo; Dispozitive și servicii &rsaquo; Adaugă integrare &rsaquo; Vehicle Manager</code>.": "No vehicle found. Add one in <code>Settings &rsaquo; Devices &amp; services &rsaquo; Add integration &rsaquo; Vehicle Manager</code>."
 };
 
 console.info(
@@ -266,9 +274,16 @@ const KM_HORIZON = { revizie: 15000, distributie: 120000 };
 /* Ordinea in modul compact: intai ce e expirat, apoi ce expira curand. */
 const STATUS_RANK = { expired: 0, warning: 1, ok: 2, unknown: 3 };
 
+/* Starea si prin forma, nu doar prin culoare (daltonism). */
+const STATUS_ICON = {
+  ok: "mdi:check-circle",
+  warning: "mdi:alert-circle",
+  expired: "mdi:close-circle",
+};
+
 const STATUS_LABEL = {
   ok: "Valabil",
-  warning: "Expira curand",
+  warning: "Expiră curând",
   expired: "Expirat",
   unknown: "Necompletat",
 };
@@ -280,11 +295,11 @@ const CLASSIC_DOCUMENTS = ["rca", "itp", "rovinieta", "revizie", "distributie"];
 const DOCUMENT_OPTIONS = [
   ["rca", "RCA"],
   ["itp", "ITP"],
-  ["rovinieta", "Rovinieta"],
+  ["rovinieta", "Rovinietă"],
   ["casco", "CASCO"],
   ["revizie", "Revizie"],
-  ["distributie", "Distributie"],
-  ["trusa_medicala", "Trusa medicala"],
+  ["distributie", "Distribuție"],
+  ["trusa_medicala", "Trusă medicală"],
   ["extinctor", "Extinctor"],
   ["impozit", "Impozit auto"],
   ["anvelope", "Schimb anvelope"],
@@ -293,12 +308,12 @@ const DOCUMENT_OPTIONS = [
 const SPEC_ROWS = [
   { key: "make", label: "Marca", icon: "mdi:car-side" },
   { key: "model", label: "Model", icon: "mdi:car-info" },
-  { key: "year", label: "An fabricatie", icon: "mdi:calendar-blank" },
+  { key: "year", label: "An fabricație", icon: "mdi:calendar-blank" },
   { key: "mileage", label: "Kilometraj", icon: "mdi:counter", unit: "km", entity: "mileage", auto: "mileage_auto" },
   { key: "color", label: "Culoare", icon: "mdi:palette", swatch: true },
   { key: "engine_capacity", label: "Capacitate motor", icon: "mdi:engine", unit: "cm³" },
   { key: "fuel_type", label: "Combustibil", icon: "mdi:gas-station", useLabel: "fuel_label" },
-  { key: "license_plate", label: "Nr. inmatriculare", icon: "mdi:card-text-outline" },
+  { key: "license_plate", label: "Nr. înmatriculare", icon: "mdi:card-text-outline" },
   { key: "parking", label: "Parcare", icon: "mdi:car-brake-parking" },
 ];
 
@@ -308,11 +323,11 @@ function shortRemaining(document_) {
   if (days !== null && days !== undefined) {
     if (days < 0) return t("expirat de {n} z", { n: Math.abs(days) });
     if (days === 0) return t("azi");
-    if (days === 1) return t("maine");
+    if (days === 1) return t("mâine");
     return t("{n} zile", { n: days });
   }
   if (km !== null && km !== undefined) {
-    return km < 0 ? t("depasit {km} km", { km: formatNumber(Math.abs(km)) }) : `${formatNumber(km)} km`;
+    return km < 0 ? t("depășit {km} km", { km: formatNumber(Math.abs(km)) }) : `${formatNumber(km)} km`;
   }
   return "—";
 }
@@ -375,6 +390,33 @@ function navigate(path) {
 /* Viewer 3D                                                           */
 /* ------------------------------------------------------------------ */
 
+/* Telefonul cere animatii reduse: fara rotire automata. */
+const REDUCED_MOTION =
+  typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/*
+ * Proportiile masinii desenate cand nu exista model 3D (unitati ~ metri).
+ * L lungime, hb linia geamurilor, hr plafonul, xa/xf/xr/xc baza si varful stalpilor
+ * A si C, clear garda la sol, wr raza rotii, wb pozitiile puntilor.
+ */
+const BODY_TYPES = {
+  sedan: { L: 4.5, hb: 0.86, hr: 1.36, xa: 0.92, xf: 0.25, xr: -0.78, xc: -1.32, clear: 0.2, wr: 0.36, wb: [1.36, -1.36] },
+  hatchback: { L: 3.95, hb: 0.86, hr: 1.42, xa: 0.72, xf: 0.12, xr: -1.42, xc: -1.86, clear: 0.2, wr: 0.35, wb: [1.2, -1.22] },
+  wagon: { L: 4.6, hb: 0.86, hr: 1.4, xa: 0.92, xf: 0.28, xr: -2.02, xc: -2.2, clear: 0.2, wr: 0.36, wb: [1.4, -1.4] },
+  suv: { L: 4.45, hb: 1.04, hr: 1.66, xa: 0.92, xf: 0.32, xr: -1.86, xc: -2.08, clear: 0.34, wr: 0.42, wb: [1.36, -1.36] },
+  coupe: { L: 4.4, hb: 0.8, hr: 1.24, xa: 0.62, xf: -0.06, xr: -0.62, xc: -1.5, clear: 0.17, wr: 0.36, wb: [1.36, -1.34] },
+};
+
+/* Tipul caroseriei ghicit din marca si model, cand nu e ales in card. */
+function guessBodyType(vehicle) {
+  const text = `${vehicle.make || ""} ${vehicle.model || ""}`.toLowerCase();
+  if (/caravan|break|combi|kombi|estate|touring|variant|avant|sportswagon|tourer|\bsw\b|mcv/.test(text)) return "wagon";
+  if (/suv|duster|qashqai|tucson|sportage|kuga|tiguan|kodiaq|karoq|x-trail|rav4|cr-v|captur|3008|5008|2008|juke|vitara|bigster|kamiq|t-roc|\bx[1-7]\b|\bq[2-8]\b|glc|gle|xc[469]0|range rover|jeep/.test(text)) return "suv";
+  if (/coupe|coupé|\bgt\b|brz|mx-5|\btt\b|supra|mustang|camaro/.test(text)) return "coupe";
+  if (/hatch|clio|polo|corsa|fiesta|golf|i10|i20|i30|yaris|jazz|sandero|fabia|\b208\b|\bc[1-4]\b|ibiza|micra|swift|\bup\b|spark|astra|focus|ceed|megane|leon|aygo|twingo|picanto|\brio\b|spring/.test(text)) return "hatchback";
+  return "sedan";
+}
+
 class CarViewer {
   constructor(canvas, options) {
     this.canvas = canvas;
@@ -412,7 +454,8 @@ class CarViewer {
       alpha: true,
       powerPreference: "high-performance",
     });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    const coarse = typeof matchMedia === "function" && matchMedia("(pointer: coarse)").matches;
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2));
     if ("outputColorSpace" in this.renderer) {
       this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     }
@@ -441,7 +484,7 @@ class CarViewer {
       this._pendingVehicle = null;
       await this.setVehicle(pending);
     }
-    this._loop(performance.now());
+    this._kick();
   }
 
   /* --------------------------------------------------------------- */
@@ -552,6 +595,7 @@ class CarViewer {
     });
     this._buildStage();
     this._buildEnvironment();
+    this._kick();
   }
 
   _buildShadowBlob() {
@@ -585,116 +629,150 @@ class CarViewer {
   /* --------------------------------------------------------------- */
   /* Masina procedurala                                               */
   /* --------------------------------------------------------------- */
-  _buildProceduralCar(colorHex) {
+  _buildProceduralCar(colorHex, bodyType) {
     const THREE = this.THREE;
+    const spec = BODY_TYPES[bodyType] || BODY_TYPES.sedan;
     const group = new THREE.Group();
-    const width = 1.86;
+    const { L, hb, hr, xa, xf, xr, xc, clear, wr, wb } = spec;
+    const W = 1.8; /* latimea caroseriei (fara bevel) */
+    const front = L / 2;
+    const rear = -L / 2;
 
-    const bodyShape = new THREE.Shape();
-    bodyShape.moveTo(-1.95, 0.22);
-    bodyShape.lineTo(-2.06, 0.5);
-    bodyShape.quadraticCurveTo(-2.1, 0.74, -1.86, 0.8);
-    bodyShape.quadraticCurveTo(-1.5, 0.86, -1.22, 0.88);
-    bodyShape.quadraticCurveTo(-0.95, 1.26, -0.52, 1.3);
-    bodyShape.lineTo(0.2, 1.31);
-    bodyShape.quadraticCurveTo(0.68, 1.28, 0.86, 0.94);
-    bodyShape.quadraticCurveTo(1.3, 0.84, 1.72, 0.78);
-    bodyShape.quadraticCurveTo(2.04, 0.72, 2.08, 0.46);
-    bodyShape.lineTo(2.04, 0.24);
-    bodyShape.quadraticCurveTo(1.9, 0.16, 1.6, 0.16);
-    bodyShape.lineTo(-1.6, 0.16);
-    bodyShape.quadraticCurveTo(-1.88, 0.16, -1.95, 0.22);
-
-    const bodyGeometry = new THREE.ExtrudeGeometry(bodyShape, {
-      depth: width,
-      bevelEnabled: true,
-      bevelThickness: 0.1,
-      bevelSize: 0.1,
-      bevelSegments: 4,
-      curveSegments: 18,
-    });
-    bodyGeometry.translate(0, 0, -width / 2);
-
-    const bodyMaterial = new THREE.MeshPhysicalMaterial({
+    const paint = new THREE.MeshPhysicalMaterial({
       color: new THREE.Color(colorHex),
-      metalness: 0.5,
+      metalness: 0.55,
       roughness: 0.22,
       clearcoat: 1,
-      clearcoatRoughness: 0.06,
-      envMapIntensity: 1.25,
+      clearcoatRoughness: 0.05,
+      envMapIntensity: 1.3,
     });
-    group.add(new THREE.Mesh(bodyGeometry, bodyMaterial));
+    const glass = new THREE.MeshPhysicalMaterial({
+      color: 0x0a1018,
+      metalness: 0.3,
+      roughness: 0.06,
+      envMapIntensity: 1.8,
+      transparent: true,
+      opacity: 0.92,
+    });
+    const dark = new THREE.MeshStandardMaterial({ color: 0x07090c, roughness: 0.9 });
 
-    /* Contur holografic subtil peste caroserie. */
+    /* --- caroseria de jos (pana la linia geamurilor) --- */
+    const lower = new THREE.Shape();
+    lower.moveTo(rear + 0.22, clear);
+    lower.quadraticCurveTo(rear, clear, rear, clear + 0.2);
+    lower.lineTo(rear, hb - 0.12);
+    lower.quadraticCurveTo(rear + 0.02, hb, rear + 0.28, hb);
+    lower.lineTo(xa, hb);
+    lower.quadraticCurveTo(front - 0.25, hb - 0.03, front - 0.02, hb - 0.24);
+    lower.lineTo(front, clear + 0.22);
+    lower.quadraticCurveTo(front, clear, front - 0.24, clear);
+    lower.lineTo(rear + 0.22, clear);
+
+    const lowerGeometry = new THREE.ExtrudeGeometry(lower, {
+      depth: W,
+      bevelEnabled: true,
+      bevelThickness: 0.08,
+      bevelSize: 0.08,
+      bevelSegments: 4,
+      curveSegments: 16,
+    });
+    lowerGeometry.translate(0, 0, -W / 2);
+    group.add(new THREE.Mesh(lowerGeometry, paint));
+
+    /* contur holografic subtil */
     this.edgeMaterial = new THREE.LineBasicMaterial({
       color: this.options.accent,
       transparent: true,
       opacity: 0.22,
     });
-    const edges = new THREE.LineSegments(
-      new THREE.EdgesGeometry(bodyGeometry, 26),
-      this.edgeMaterial
-    );
+    const edges = new THREE.LineSegments(new THREE.EdgesGeometry(lowerGeometry, 26), this.edgeMaterial);
     edges.scale.set(1.004, 1.004, 1.004);
     group.add(edges);
 
-    /* Banda de geamuri. */
-    const glassShape = new THREE.Shape();
-    glassShape.moveTo(-1.16, 0.9);
-    glassShape.quadraticCurveTo(-0.92, 1.2, -0.52, 1.24);
-    glassShape.lineTo(0.18, 1.25);
-    glassShape.quadraticCurveTo(0.6, 1.22, 0.78, 0.95);
-    glassShape.lineTo(-1.16, 0.9);
-
-    const glassGeometry = new THREE.ExtrudeGeometry(glassShape, {
-      depth: width + 0.04,
-      bevelEnabled: false,
-      curveSegments: 14,
+    /* --- habitaclul: geamuri fumurii, mai ingust decat caroseria --- */
+    const cabinW = W * 0.84;
+    const cabin = new THREE.Shape();
+    cabin.moveTo(xc, hb);
+    cabin.lineTo(xr, hr - 0.06);
+    cabin.quadraticCurveTo(xr + 0.04, hr, xr + 0.18, hr);
+    cabin.lineTo(xf - 0.16, hr);
+    cabin.quadraticCurveTo(xf - 0.02, hr, xf, hr - 0.06);
+    cabin.lineTo(xa, hb);
+    cabin.lineTo(xc, hb);
+    const cabinGeometry = new THREE.ExtrudeGeometry(cabin, {
+      depth: cabinW,
+      bevelEnabled: true,
+      bevelThickness: 0.05,
+      bevelSize: 0.05,
+      bevelSegments: 3,
+      curveSegments: 10,
     });
-    glassGeometry.translate(0, 0, -(width + 0.04) / 2);
-    group.add(
-      new THREE.Mesh(
-        glassGeometry,
-        new THREE.MeshPhysicalMaterial({
-          color: 0x080d14,
-          metalness: 0.2,
-          roughness: 0.08,
-          envMapIntensity: 1.6,
-        })
-      )
+    cabinGeometry.translate(0, 0.02, -cabinW / 2);
+    group.add(new THREE.Mesh(cabinGeometry, glass));
+
+    /* plafonul si stalpii, in culoarea masinii */
+    const roof = new THREE.Mesh(
+      new THREE.BoxGeometry(xf - xr - 0.22, 0.06, cabinW + 0.1),
+      paint
     );
+    roof.position.set((xf + xr) / 2, hr + 0.04, 0);
+    group.add(roof);
 
-    /* Roti. */
-    const tireMaterial = new THREE.MeshStandardMaterial({
-      color: 0x12161b,
-      roughness: 0.88,
-      metalness: 0.05,
-    });
+    const pillar = (x1, y1, x2, y2, thickness) => {
+      const length = Math.hypot(x2 - x1, y2 - y1);
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(length, thickness, cabinW + 0.11), paint);
+      mesh.position.set((x1 + x2) / 2, (y1 + y2) / 2 + 0.02, 0);
+      mesh.rotation.z = Math.atan2(y2 - y1, x2 - x1);
+      return mesh;
+    };
+    group.add(pillar(xa, hb, xf, hr, 0.07)); /* stalpul A */
+    group.add(pillar(xc, hb, xr, hr, 0.1)); /* stalpul C */
+    const bx = (xf + xr) / 2 + 0.05;
+    group.add(pillar(bx, hb, bx, hr, 0.09)); /* stalpul B */
+
+    /* --- roti: pasaj intunecat, anvelopa, janta cu 5 spite --- */
+    const tireMaterial = new THREE.MeshStandardMaterial({ color: 0x111418, roughness: 0.9 });
     const rimMaterial = new THREE.MeshPhysicalMaterial({
       color: 0xd3dae1,
       metalness: 1,
-      roughness: 0.24,
+      roughness: 0.25,
       envMapIntensity: 1.5,
     });
-    const tireGeometry = new THREE.CylinderGeometry(0.42, 0.42, 0.3, 36);
-    const rimGeometry = new THREE.CylinderGeometry(0.25, 0.25, 0.32, 20);
+    const tireGeometry = new THREE.CylinderGeometry(wr, wr, 0.3, 40);
+    const rimGeometry = new THREE.CylinderGeometry(wr * 0.62, wr * 0.62, 0.31, 28);
+    const hubGeometry = new THREE.CylinderGeometry(wr * 0.16, wr * 0.16, 0.33, 16);
+    const spokeGeometry = new THREE.BoxGeometry(wr * 0.12, wr * 0.5, 0.32);
+    const archGeometry = new THREE.CylinderGeometry(wr + 0.07, wr + 0.07, 0.01, 40);
 
     this.wheels = [];
-    for (const x of [1.3, -1.32]) {
-      for (const z of [width / 2 - 0.02, -(width / 2 - 0.02)]) {
+    for (const x of wb) {
+      for (const side of [1, -1]) {
+        const arch = new THREE.Mesh(archGeometry, dark);
+        arch.rotation.x = Math.PI / 2;
+        arch.position.set(x, wr, side * (W / 2 + 0.085));
+        group.add(arch);
+
         const wheel = new THREE.Group();
         const tire = new THREE.Mesh(tireGeometry, tireMaterial);
-        const rim = new THREE.Mesh(rimGeometry, rimMaterial);
-        tire.rotation.x = Math.PI / 2;
-        rim.rotation.x = Math.PI / 2;
-        wheel.add(tire, rim);
-        wheel.position.set(x, 0.42, z);
+        const rim = new THREE.Mesh(rimGeometry, dark);
+        const hub = new THREE.Mesh(hubGeometry, rimMaterial);
+        for (const part of [tire, rim, hub]) part.rotation.x = Math.PI / 2;
+        wheel.add(tire, rim, hub);
+        for (let i = 0; i < 5; i += 1) {
+          const spoke = new THREE.Mesh(spokeGeometry, rimMaterial);
+          spoke.position.y = wr * 0.32;
+          const holder = new THREE.Group();
+          holder.rotation.z = (i / 5) * Math.PI * 2;
+          holder.add(spoke);
+          wheel.add(holder);
+        }
+        wheel.position.set(x, wr, side * (W / 2 - 0.02));
         group.add(wheel);
         this.wheels.push(wheel);
       }
     }
 
-    /* Faruri si stopuri. */
+    /* --- faruri si stopuri --- */
     const headlight = new THREE.MeshStandardMaterial({
       color: 0xffffff,
       emissive: new THREE.Color(0xdff3ff),
@@ -705,16 +783,19 @@ class CarViewer {
       emissive: new THREE.Color(0xff2d3f),
       emissiveIntensity: 2.2,
     });
-    const lampGeometry = new THREE.BoxGeometry(0.08, 0.1, 0.46);
-    for (const z of [0.56, -0.56]) {
-      const front = new THREE.Mesh(lampGeometry, headlight);
-      front.position.set(2.06, 0.48, z);
-      group.add(front);
-      const rear = new THREE.Mesh(lampGeometry, taillight);
-      rear.position.set(-2.07, 0.58, z);
-      group.add(rear);
+    const lamp = new THREE.BoxGeometry(0.1, 0.1, 0.42);
+    for (const z of [0.58, -0.58]) {
+      const head = new THREE.Mesh(lamp, headlight);
+      head.position.set(front + 0.04, hb - 0.3, z);
+      group.add(head);
+      const tail = new THREE.Mesh(lamp, taillight);
+      tail.position.set(rear - 0.04, hb - 0.16, z);
+      group.add(tail);
     }
 
+    /* masinile mai lungi sau mai inalte decat cadrul sunt scalate ca sa incapa */
+    const scale = Math.min(1, 4.3 / L);
+    group.scale.setScalar(scale);
     return group;
   }
 
@@ -758,7 +839,7 @@ class CarViewer {
       return;
     }
 
-    const key = `${vehicle.model3d || ""}|${vehicle.colorHex}`;
+    const key = `${vehicle.model3d || ""}|${vehicle.colorHex}|${vehicle.bodyType || ""}`;
     if (key === this._currentKey) return;
     this._currentKey = key;
 
@@ -770,6 +851,7 @@ class CarViewer {
         const model = await this._loadModel(vehicle.model3d);
         if (this.disposed || this._currentKey !== key) return;
         this.carGroup.add(model);
+        this._kick();
         return;
       } catch (err) {
         console.warn(
@@ -780,7 +862,8 @@ class CarViewer {
       }
     }
 
-    this.carGroup.add(this._buildProceduralCar(vehicle.colorHex));
+    this.carGroup.add(this._buildProceduralCar(vehicle.colorHex, vehicle.bodyType));
+    this._kick();
   }
 
   _clearCar() {
@@ -799,6 +882,7 @@ class CarViewer {
   /* --------------------------------------------------------------- */
   _attachPointerHandlers() {
     const onDown = (event) => {
+      this._kick();
       this.dragging = true;
       this.lastPointer = event.clientX;
       this.lastPointerY = event.clientY;
@@ -816,6 +900,7 @@ class CarViewer {
       event.preventDefault();
     };
     const onUp = (event) => {
+      this._kick();
       this.dragging = false;
       this.canvas.releasePointerCapture?.(event.pointerId);
     };
@@ -832,6 +917,28 @@ class CarViewer {
     this._resize();
     this.observer = new ResizeObserver(() => this._resize());
     this.observer.observe(this.canvas.parentElement || this.canvas);
+
+    /* nu randam cand cardul e in afara ecranului sau aplicatia e in fundal */
+    this.visible = true;
+    if (typeof IntersectionObserver === "function") {
+      this.visibility = new IntersectionObserver((entries) => {
+        this.visible = entries.some((entry) => entry.isIntersecting);
+        this._kick();
+      });
+      this.visibility.observe(this.canvas);
+    }
+    this._onPageVisibility = () => this._kick();
+    document.addEventListener("visibilitychange", this._onPageVisibility);
+  }
+
+  /* Porneste bucla de randare (daca e oprita) si o tine activa putin timp. */
+  _kick() {
+    if (this.disposed || !this.ready) return;
+    this._busyUntil = performance.now() + 1500;
+    if (!this._raf && this.visible !== false && !document.hidden) {
+      this.lastFrame = performance.now();
+      this._raf = requestAnimationFrame((timestamp) => this._loop(timestamp));
+    }
   }
 
   _resize() {
@@ -851,14 +958,17 @@ class CarViewer {
     this.radius = 8.2 * fit;
     this.scene.fog.near = 7 + this.radius - 8.2;
     this.scene.fog.far = 17 + this.radius - 8.2;
+    this._kick();
   }
 
   _loop(now) {
-    if (this.disposed) return;
+    this._raf = null;
+    if (this.disposed || this.visible === false || document.hidden) return;
     const delta = Math.min((now - this.lastFrame) / 1000 || 0, 0.1);
     this.lastFrame = now;
+    const rotating = this.options.autoRotate && !REDUCED_MOTION;
 
-    if (this.options.autoRotate && !this.dragging) {
+    if (rotating && !this.dragging) {
       this.yaw += this.options.rotateSpeed * delta;
     }
     if (!this.dragging) {
@@ -881,17 +991,23 @@ class CarViewer {
     }
 
     this.renderer.render(this.scene, this.camera);
-    this._raf = requestAnimationFrame((timestamp) => this._loop(timestamp));
+
+    /* fara rotire si fara interactiune, scena sta pe loc: nu mai desenam */
+    const idle = !rotating && !this.dragging && this.spin === 0 && now > (this._busyUntil || 0);
+    if (!idle) this._raf = requestAnimationFrame((timestamp) => this._loop(timestamp));
   }
 
   setOptions(options) {
     Object.assign(this.options, options);
+    this._kick();
   }
 
   dispose() {
     this.disposed = true;
     if (this._raf) cancelAnimationFrame(this._raf);
     this.observer?.disconnect();
+    this.visibility?.disconnect();
+    if (this._onPageVisibility) document.removeEventListener("visibilitychange", this._onPageVisibility);
     this._clearCar();
     this.envMap?.dispose?.();
     this.renderer?.dispose?.();
@@ -910,27 +1026,35 @@ const FILES_WS_SUBSCRIBE = "vehicle_manager/files/subscribe";
 const FILES_WS_DELETE = "vehicle_manager/files/delete";
 const FILES_URL = "/api/vehicle_manager/files";
 /* Pe langa acte: talon, cartea masinii etc. (GENERAL_SLOT din files.py) */
-const FILES_GENERAL = ["general", "Alte documente (talon, cartea masinii...)", "mdi:folder-outline"];
+const FILES_GENERAL = ["general", "Alte documente (talon, cartea mașinii...)", "mdi:folder-outline"];
 
 const EXPENSES_WS_SUBSCRIBE = "vehicle_manager/expenses/subscribe";
 const EXPENSES_WS_ADD = "vehicle_manager/expenses/add";
 const EXPENSES_WS_DELETE = "vehicle_manager/expenses/delete";
 
+/* Culoare proprie pe categorie: pozitii diferite intre cele doua accente ale temei. */
+function categoryColor(key) {
+  const keys = Object.keys(EXPENSE_CATEGORIES);
+  const index = Math.max(0, keys.indexOf(key));
+  const share = Math.round((index / Math.max(1, keys.length - 1)) * 100);
+  return `color-mix(in oklch, var(--vm-accent-2) ${share}%, var(--vm-accent))`;
+}
+
 /* Aceleasi chei ca EXPENSE_CATEGORIES din const.py. */
 const EXPENSE_CATEGORIES = {
   rca: ["RCA", "mdi:shield-car"],
   itp: ["ITP", "mdi:car-wrench"],
-  rovinieta: ["Rovinieta", "mdi:road-variant"],
+  rovinieta: ["Rovinietă", "mdi:road-variant"],
   casco: ["CASCO", "mdi:shield-star"],
   revizie: ["Revizie", "mdi:oil"],
-  distributie: ["Distributie", "mdi:cog-sync"],
-  reparatii: ["Reparatii", "mdi:wrench"],
+  distributie: ["Distribuție", "mdi:cog-sync"],
+  reparatii: ["Reparații", "mdi:wrench"],
   anvelope: ["Anvelope", "mdi:tire"],
   combustibil: ["Combustibil", "mdi:gas-station"],
-  spalare: ["Spalare", "mdi:car-wash"],
+  spalare: ["Spălare", "mdi:car-wash"],
   parcare: ["Parcare", "mdi:parking"],
   amenzi: ["Amenzi", "mdi:file-document-alert"],
-  taxe: ["Taxe si impozit", "mdi:bank"],
+  taxe: ["Taxe și impozit", "mdi:bank"],
   accesorii: ["Accesorii", "mdi:car-seat"],
   altele: ["Altele", "mdi:dots-horizontal"],
 };
@@ -1071,16 +1195,16 @@ const THEME_GROUPS = [
   {
     title: "Culori",
     items: [
-      { key: "follow_ha", type: "bool", label: "Foloseste culorile temei Home Assistant" },
+      { key: "follow_ha", type: "bool", label: "Folosește culorile temei Home Assistant" },
       { key: "accent", type: "color", label: "Accent principal" },
       { key: "accent2", type: "color", label: "Accent secundar" },
       { key: "bg", type: "color", label: "Fundal" },
       { key: "panel", type: "color", label: "Panouri" },
       { key: "text", type: "color", label: "Text" },
       { key: "dim", type: "color", label: "Text secundar" },
-      { key: "line", type: "color", label: "Linii si contururi" },
+      { key: "line", type: "color", label: "Linii și contururi" },
       { key: "ok", type: "color", label: "Stare: valabil" },
-      { key: "warn", type: "color", label: "Stare: expira curand" },
+      { key: "warn", type: "color", label: "Stare: expiră curând" },
       { key: "bad", type: "color", label: "Stare: expirat" },
     ],
   },
@@ -1106,18 +1230,18 @@ const THEME_GROUPS = [
   {
     title: "Aspect",
     items: [
-      { key: "spacing", type: "range", label: "Spatiere", min: 0.6, max: 1.6, step: 0.05, format: "percent" },
-      { key: "radius", type: "range", label: "Rotunjire colturi", min: 0, max: 2, step: 0.1, format: "percent" },
+      { key: "spacing", type: "range", label: "Spațiere", min: 0.6, max: 1.6, step: 0.05, format: "percent" },
+      { key: "radius", type: "range", label: "Rotunjire colțuri", min: 0, max: 2, step: 0.1, format: "percent" },
       { key: "panel_opacity", type: "range", label: "Opacitate panouri", min: 0.1, max: 1, step: 0.02, format: "percent" },
       { key: "blur", type: "range", label: "Estompare panouri", min: 0, max: 24, step: 1, format: "px" },
-      { key: "glow", type: "range", label: "Intensitate stralucire", min: 0, max: 2, step: 0.1, format: "percent" },
+      { key: "glow", type: "range", label: "Intensitate strălucire", min: 0, max: 2, step: 0.1, format: "percent" },
       { key: "grid", type: "bool", label: "Grila de fundal" },
     ],
   },
   {
     title: "Scena 3D",
     items: [
-      { key: "stage_height", type: "range", label: "Inaltime scena", min: 180, max: 640, step: 10, format: "px" },
+      { key: "stage_height", type: "range", label: "Înălțime scena", min: 180, max: 640, step: 10, format: "px" },
     ],
   },
   {
@@ -1127,19 +1251,19 @@ const THEME_GROUPS = [
       {
         key: "bg_target",
         type: "select",
-        label: "Unde se afiseaza",
+        label: "Unde se afișează",
         options: [["card", "Tot cardul"], ["stage", "Doar scena 3D"]],
       },
       {
         key: "bg_fit",
         type: "select",
-        label: "Incadrare",
-        options: [["cover", "Umple"], ["contain", "Potriveste"], ["tile", "Mozaic"]],
+        label: "Încadrare",
+        options: [["cover", "Umple"], ["contain", "Potrivește"], ["tile", "Mozaic"]],
       },
       {
         key: "bg_position",
         type: "select",
-        label: "Pozitie",
+        label: "Poziție",
         options: [["center", "Centru"], ["top", "Sus"], ["bottom", "Jos"]],
       },
       { key: "bg_overlay", type: "range", label: "Acoperire cu culoarea de fundal", min: 0, max: 0.95, step: 0.05, format: "percent" },
@@ -1362,6 +1486,9 @@ ha-card::before {
 .bg-layer[hidden] { display: none; }
 .vm, .empty { position: relative; z-index: 2; }
 
+/* containerul pentru regulile dupa latimea cardului (nu a ecranului) */
+.vm { container-type: inline-size; container-name: vm; }
+
 .vm { position: relative; padding: calc(14px * var(--vm-sp)) calc(16px * var(--vm-sp)) calc(12px * var(--vm-sp)); }
 
 /* ---- bara superioara ---- */
@@ -1394,8 +1521,8 @@ ha-card::before {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .titles .s {
-  font: calc(10px * var(--vm-fs))/1.4 var(--vm-mono);
-  letter-spacing: .16em; text-transform: uppercase; color: var(--vm-dim);
+  font: calc(11px * var(--vm-fs))/1.4 var(--vm-mono);
+  letter-spacing: .12em; text-transform: uppercase; color: var(--vm-dim);
 }
 
 .top-spacer { flex: 1 1 auto; }
@@ -1439,7 +1566,7 @@ ha-card::before {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   min-width: 34px; height: 34px; flex: none; padding: 0 8px;
   border-radius: calc(9px * var(--vm-r)); cursor: pointer;
-  font: calc(10px * var(--vm-fs))/1 var(--vm-mono); letter-spacing: .14em; text-transform: uppercase;
+  font: calc(11px * var(--vm-fs))/1 var(--vm-mono); letter-spacing: .1em; text-transform: uppercase;
   color: var(--vm-dim);
   background: var(--vm-soft);
   border: 1px solid var(--vm-line);
@@ -1469,8 +1596,8 @@ ha-card::before {
 
 .panel h3 {
   margin: 0 0 10px;
-  font: calc(10px * var(--vm-fs))/1 var(--vm-mono);
-  letter-spacing: .2em; text-transform: uppercase;
+  font: calc(11px * var(--vm-fs))/1 var(--vm-mono);
+  letter-spacing: .14em; text-transform: uppercase;
   color: var(--vm-accent);
   display: flex; align-items: center; gap: 8px;
 }
@@ -1482,6 +1609,26 @@ ha-card::before {
 
 /* ---- caracteristici ---- */
 .specs { display: flex; flex-direction: column; gap: 2px; }
+.mini {
+  margin-top: auto; padding-top: calc(10px * var(--vm-sp));
+  display: flex; flex-direction: column; gap: 6px;
+}
+.mini[hidden] { display: none; }
+.mini-tile {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 10px;
+  padding: 7px 10px; border-radius: calc(9px * var(--vm-r));
+  background: color-mix(in srgb, var(--vm-bg) 55%, transparent); border: 1px solid var(--vm-line);
+}
+.mini-tile .k {
+  font: calc(10.5px * var(--vm-fs))/1.2 var(--vm-mono); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--vm-dim); white-space: nowrap;
+}
+.mini-tile .v {
+  font-size: calc(13px * var(--vm-fs)); font-weight: 650; text-align: right;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.mini-tile[data-status="warning"] .v { color: var(--vm-warn); }
+.mini-tile[data-status="expired"] .v { color: var(--vm-bad); }
 
 .spec {
   display: grid;
@@ -1499,7 +1646,7 @@ ha-card::before {
 
 .spec ha-icon { --mdc-icon-size: calc(17px * var(--vm-fs)); color: var(--vm-dim); }
 .spec .k {
-  font: calc(10px * var(--vm-fs))/1.3 var(--vm-mono);
+  font: calc(11px * var(--vm-fs))/1.3 var(--vm-mono);
   letter-spacing: .1em; text-transform: uppercase; color: var(--vm-dim);
 }
 .spec .v {
@@ -1514,7 +1661,7 @@ ha-card::before {
 .spec .nav ha-icon { --mdc-icon-size: 16px; color: var(--vm-accent); }
 .spec .when { font-size: calc(12.5px * var(--vm-fs)); }
 .spec .auto {
-  font: 600 calc(8.5px * var(--vm-fs))/1 var(--vm-mono); letter-spacing: .12em; text-transform: uppercase;
+  font: 600 calc(9.5px * var(--vm-fs))/1 var(--vm-mono); letter-spacing: .12em; text-transform: uppercase;
   padding: 3px 5px; border-radius: 5px;
   color: var(--vm-accent); border: 1px solid color-mix(in srgb, var(--vm-accent) 55%, transparent);
 }
@@ -1565,8 +1712,8 @@ ha-card::before {
 
 .hud {
   position: absolute; left: 14px; bottom: 12px;
-  font: calc(9px * var(--vm-fs))/1.5 var(--vm-mono);
-  letter-spacing: .18em; text-transform: uppercase;
+  font: calc(10.5px * var(--vm-fs))/1.5 var(--vm-mono);
+  letter-spacing: .12em; text-transform: uppercase;
   color: var(--vm-dim); pointer-events: none;
 }
 
@@ -1575,8 +1722,8 @@ ha-card::before {
   display: flex; gap: 6px;
 }
 .chip {
-  font: calc(9px * var(--vm-fs))/1 var(--vm-mono);
-  letter-spacing: .16em; text-transform: uppercase;
+  font: calc(10.5px * var(--vm-fs))/1 var(--vm-mono);
+  letter-spacing: .12em; text-transform: uppercase;
   padding: 7px 9px; border-radius: calc(8px * var(--vm-r)); cursor: pointer;
   color: var(--vm-dim);
   background: var(--vm-soft);
@@ -1595,7 +1742,7 @@ ha-card::before {
 
 .doc {
   display: grid;
-  grid-template-columns: 44px 1fr auto;
+  grid-template-columns: 48px 1fr auto;
   align-items: center;
   gap: 10px;
   width: 100%;
@@ -1614,7 +1761,7 @@ ha-card::before {
 .doc[data-status="warning"] { border-left-color: var(--vm-warn); }
 .doc[data-status="expired"] { border-left-color: var(--vm-bad); }
 
-.ring { position: relative; width: 44px; height: 44px; }
+.ring { position: relative; width: 48px; height: 48px; }
 .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 .ring circle { fill: none; stroke-width: 3.5; stroke-linecap: round; }
 .ring .trk { stroke: var(--vm-line); }
@@ -1624,14 +1771,21 @@ ha-card::before {
 .doc[data-status="expired"] .ring .val { stroke: var(--vm-bad); }
 .ring .num {
   position: absolute; inset: 0;
-  display: grid; place-items: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
   font: 600 calc(12px * var(--vm-fs))/1 var(--vm-mono);
+}
+.ring .num small {
+  font: 500 8px/1 var(--vm-mono); letter-spacing: .04em; color: var(--vm-dim);
 }
 
 .doc .meta { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.doc .name .st { --mdc-icon-size: 12px; margin-right: 4px; vertical-align: -1px; }
+.doc[data-status="ok"] .name .st { color: var(--vm-ok); }
+.doc[data-status="warning"] .name .st { color: var(--vm-warn); }
+.doc[data-status="expired"] .name .st { color: var(--vm-bad); }
 .doc .name {
-  font: calc(10px * var(--vm-fs))/1.2 var(--vm-mono);
-  letter-spacing: .14em; text-transform: uppercase; color: var(--vm-dim);
+  font: calc(11px * var(--vm-fs))/1.2 var(--vm-mono);
+  letter-spacing: .1em; text-transform: uppercase; color: var(--vm-dim);
 }
 .doc .main { font-size: calc(13.5px * var(--vm-fs)); font-weight: 650; }
 .doc .sub { font-size: calc(11px * var(--vm-fs)); color: var(--vm-dim); }
@@ -1642,8 +1796,8 @@ ha-card::before {
   display: flex; justify-content: space-between; gap: 10px;
   padding-top: calc(10px * var(--vm-sp)); margin-top: calc(12px * var(--vm-sp));
   border-top: 1px solid var(--vm-line);
-  font: calc(9px * var(--vm-fs))/1.4 var(--vm-mono);
-  letter-spacing: .14em; text-transform: uppercase; color: var(--vm-dim);
+  font: calc(10.5px * var(--vm-fs))/1.4 var(--vm-mono);
+  letter-spacing: .1em; text-transform: uppercase; color: var(--vm-dim);
 }
 
 .empty { padding: 26px 16px; text-align: center; color: var(--vm-dim); font-size: calc(13px * var(--vm-fs)); }
@@ -1708,10 +1862,16 @@ ha-card::before {
 }
 .th-head h2 {
   margin: 0; flex: 1 1 auto;
-  font: 600 12px/1 var(--vm-mono); letter-spacing: .2em; text-transform: uppercase;
+  font: 600 12px/1 var(--vm-mono); letter-spacing: .14em; text-transform: uppercase;
   color: var(--vm-accent);
 }
 .th-status { font-size: 11px; color: var(--vm-dim); }
+.th-close {
+  order: 99; width: 30px; height: 30px; flex: none; cursor: pointer;
+  border-radius: 8px; border: 1px solid var(--vm-line); background: var(--vm-soft);
+  color: var(--vm-dim); font: 600 17px/1 var(--vm-mono);
+}
+.th-close:hover { color: var(--vm-accent); border-color: var(--vm-accent); }
 
 .th-presets {
   display: grid;
@@ -1746,7 +1906,7 @@ ha-card::before {
 }
 .th-group h4 {
   margin: 0 0 8px;
-  font: 10px/1 var(--vm-mono); letter-spacing: .18em; text-transform: uppercase;
+  font: 11px/1 var(--vm-mono); letter-spacing: .12em; text-transform: uppercase;
   color: var(--vm-dim);
 }
 
@@ -1799,7 +1959,7 @@ ha-card::before {
   margin-top: 14px;
 }
 .btn {
-  font: 600 11px/1 var(--vm-mono); letter-spacing: .14em; text-transform: uppercase;
+  font: 600 11px/1 var(--vm-mono); letter-spacing: .1em; text-transform: uppercase;
   padding: 10px 14px; border-radius: 9px; cursor: pointer;
   color: var(--vm-text); background: var(--vm-soft);
   border: 1px solid var(--vm-line);
@@ -1825,10 +1985,26 @@ ha-card::before {
   background: var(--vm-soft); border: 1px solid var(--vm-line);
 }
 .c-tile .k {
-  font: 10px/1.2 var(--vm-mono); letter-spacing: .14em; text-transform: uppercase;
+  font: 11px/1.2 var(--vm-mono); letter-spacing: .1em; text-transform: uppercase;
   color: var(--vm-dim);
 }
 .c-tile .v { font-size: calc(20px * var(--vm-fs)); font-weight: 700; margin-top: 4px; }
+.c-chart {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 6px;
+  height: 120px; margin-bottom: 14px; padding: 10px 10px 4px;
+  border-radius: 10px; background: var(--vm-soft); border: 1px solid var(--vm-line);
+}
+.c-chart[hidden] { display: none; }
+.c-col { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
+.c-col .bar { flex: 1; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
+.c-col .bar span {
+  display: block; width: min(22px, 70%); border-radius: 5px 5px 2px 2px;
+  background: linear-gradient(180deg, var(--vm-accent), color-mix(in srgb, var(--vm-accent-2) 70%, var(--vm-accent)));
+}
+.c-col .lbl {
+  font: calc(10px * var(--vm-fs))/1 var(--vm-mono); color: var(--vm-dim);
+  text-transform: uppercase; white-space: nowrap; overflow: hidden; max-width: 100%;
+}
 .c-bars { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
 .c-bar {
   display: grid; grid-template-columns: 20px minmax(80px, 140px) 1fr auto;
@@ -1851,7 +2027,7 @@ ha-card::before {
 }
 .c-form label { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .c-form label > span {
-  font: 10px/1.2 var(--vm-mono); letter-spacing: .12em; text-transform: uppercase;
+  font: 11px/1.2 var(--vm-mono); letter-spacing: .12em; text-transform: uppercase;
   color: var(--vm-dim);
 }
 .c-form input, .c-form select {
@@ -1927,7 +2103,7 @@ ha-card::before {
 }
 
 .u-item {
-  display: grid; grid-template-columns: 10px minmax(0, 1fr); align-items: center; gap: 8px;
+  display: grid; grid-template-columns: 16px minmax(0, 1fr); align-items: center; gap: 8px;
   width: 100%; padding: calc(7px * var(--vm-sp)) 8px;
   border-radius: calc(9px * var(--vm-r)); cursor: pointer;
   text-align: left; color: inherit; font: inherit;
@@ -1935,13 +2111,13 @@ ha-card::before {
   border: 1px solid var(--vm-line);
 }
 .u-item:hover { background: color-mix(in srgb, var(--vm-accent) 8%, transparent); }
-.u-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--vm-dim); }
-.u-item[data-status="ok"] .u-dot { background: var(--vm-ok); }
-.u-item[data-status="warning"] .u-dot { background: var(--vm-warn); box-shadow: 0 0 calc(8px * var(--vm-glow)) var(--vm-warn); }
-.u-item[data-status="expired"] .u-dot { background: var(--vm-bad); box-shadow: 0 0 calc(8px * var(--vm-glow)) var(--vm-bad); }
+.u-dot { --mdc-icon-size: 16px; color: var(--vm-dim); }
+.u-item[data-status="ok"] .u-dot { color: var(--vm-ok); }
+.u-item[data-status="warning"] .u-dot { color: var(--vm-warn); filter: drop-shadow(0 0 calc(4px * var(--vm-glow)) var(--vm-warn)); }
+.u-item[data-status="expired"] .u-dot { color: var(--vm-bad); filter: drop-shadow(0 0 calc(4px * var(--vm-glow)) var(--vm-bad)); }
 .u-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .u-name {
-  font: calc(9.5px * var(--vm-fs))/1.2 var(--vm-mono);
+  font: calc(10.5px * var(--vm-fs))/1.2 var(--vm-mono);
   letter-spacing: .12em; text-transform: uppercase; color: var(--vm-dim);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
@@ -1956,6 +2132,22 @@ ha-card::before {
   font-size: calc(12px * var(--vm-fs)); color: var(--vm-ok);
 }
 .u-all-ok ha-icon { --mdc-icon-size: 18px; }
+
+/* ---- bara de sus pe card ingust: doar iconite, pe un singur rand ---- */
+@container vm (max-width: 620px) {
+  .top { gap: 8px; }
+  .top .brand { flex: 1 1 0; min-width: 0; }
+  .top-spacer { display: none; }
+  .titles .s { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .top .icon-btn span { display: none; }
+  .top .icon-btn { padding: 0; width: 34px; }
+  .plate { font-size: calc(11px * var(--vm-fs)); padding: 6px 8px; }
+  .picker { order: 9; flex: 1 1 100%; min-width: 0; }
+}
+/* foarte ingust: numarul de inmatriculare ramane in Caracteristici, numele are loc */
+@container vm (max-width: 440px) {
+  .vm:not(.compact) .plate { display: none; }
+}
 
 /* ---- responsive ---- */
 @media (max-width: 880px) {
@@ -2158,13 +2350,13 @@ class VehicleManagerCard extends HTMLElement {
             </span>
           </div>
           <span class="top-spacer"></span>
-          <div class="picker"><select aria-label="${t("Selecteaza vehiculul")}"></select></div>
+          <div class="picker"><select aria-label="${t("Selectează vehiculul")}"></select></div>
           <span class="plate"></span>
           <button class="icon-btn costs-btn" title="${t("Costuri")}" aria-expanded="false">
             <ha-icon icon="mdi:cash-multiple"></ha-icon>
             <span>${t("Costuri")}</span>
           </button>
-          <button class="icon-btn files-btn" title="${t("Dosarul masinii: polite, talon...")}" aria-expanded="false">
+          <button class="icon-btn files-btn" title="${t("Dosarul mașinii: polițe, talon...")}" aria-expanded="false">
             <ha-icon icon="mdi:folder-file-outline"></ha-icon>
             <span>${t("Dosar")}</span>
           </button>
@@ -2172,7 +2364,7 @@ class VehicleManagerCard extends HTMLElement {
             <ha-icon icon="mdi:palette-outline"></ha-icon>
             <span>Themes</span>
           </button>
-          <button class="icon-btn settings" title="${t("Editeaza vehiculele")}">
+          <button class="icon-btn settings" title="${t("Editează vehiculele")}">
             <ha-icon icon="mdi:cog-outline"></ha-icon>
           </button>
           <button class="icon-btn open-btn" title="${t("Deschide pagina vehiculului")}">
@@ -2188,6 +2380,7 @@ class VehicleManagerCard extends HTMLElement {
           <section class="panel specs">
             <h3>${t("Caracteristici")}</h3>
             <div class="spec-list"></div>
+            <div class="mini"></div>
           </section>
 
           <section class="stage">
@@ -2209,7 +2402,7 @@ class VehicleManagerCard extends HTMLElement {
           <section class="panel urgent"></section>
 
           <section class="panel docs">
-            <h3>${t("Acte si scadente")}</h3>
+            <h3>${t("Acte și scadențe")}</h3>
             <div class="doc-list"></div>
           </section>
         </div>
@@ -2247,6 +2440,7 @@ class VehicleManagerCard extends HTMLElement {
       cardBg: card.querySelector(".card-bg"),
       stageBg: card.querySelector(".stage-bg"),
       specList: card.querySelector(".spec-list"),
+      mini: card.querySelector(".mini"),
       docList: card.querySelector(".doc-list"),
       stage: card.querySelector(".stage"),
       canvas: card.querySelector("canvas"),
@@ -2354,7 +2548,7 @@ class VehicleManagerCard extends HTMLElement {
   _clipBadge(slot) {
     const count = (this._files || []).filter((f) => f.slot === slot).length;
     return count
-      ? ` <span class="clip" title="${t("{n} fisier(e) in dosar", { n: count })}"><ha-icon icon="mdi:paperclip"></ha-icon>${count}</span>`
+      ? ` <span class="clip" title="${t("{n} fișier(e) în dosar", { n: count })}"><ha-icon icon="mdi:paperclip"></ha-icon>${count}</span>`
       : "";
   }
 
@@ -2364,6 +2558,7 @@ class VehicleManagerCard extends HTMLElement {
     this._el.filesBtn.setAttribute("aria-expanded", "true");
     this._el.files.hidden = false;
     this._renderFiles();
+    this._revealPanel(this._el.files);
   }
 
   _closeFiles() {
@@ -2386,13 +2581,14 @@ class VehicleManagerCard extends HTMLElement {
     const head = document.createElement("div");
     head.className = "th-head";
     head.innerHTML = `<h2>${t("Dosar")}</h2><span class="th-status f-status"></span>`;
+    head.append(this._closeButton(() => this._closeFiles()));
     head.querySelector(".f-status").textContent =
       previous ||
       (this._files === null
-        ? t("Dosarul nu poate fi incarcat (actualizeaza integrarea si restarteaza Home Assistant).")
+        ? t("Dosarul nu poate fi încărcat (actualizează integrarea și restartează Home Assistant).")
         : this._files === undefined
-        ? t("Se incarca...")
-        : t("Poze sau PDF-uri cu actele masinii. Se deschid doar din Home Assistant."));
+        ? t("Se încarcă...")
+        : t("Poze sau PDF-uri cu actele mașinii. Se deschid doar din Home Assistant."));
 
     const list = document.createElement("div");
     list.className = "f-list";
@@ -2408,7 +2604,7 @@ class VehicleManagerCard extends HTMLElement {
       if (!items.length) {
         const empty = document.createElement("span");
         empty.className = "f-empty";
-        empty.textContent = t("niciun fisier");
+        empty.textContent = t("niciun fișier");
         chips.append(empty);
       }
       for (const item of items) chips.append(this._fileChip(item));
@@ -2416,7 +2612,7 @@ class VehicleManagerCard extends HTMLElement {
       const input = document.createElement("input");
       input.type = "file";
       input.accept = "image/*,application/pdf";
-      const add = this._themeButton(t("Adauga"), "btn", () => input.click());
+      const add = this._themeButton(t("Adaugă"), "btn", () => input.click());
       input.addEventListener("change", async () => {
         const file = input.files?.[0];
         if (!file) return;
@@ -2435,7 +2631,7 @@ class VehicleManagerCard extends HTMLElement {
     const chip = document.createElement("span");
     chip.className = "f-chip";
     chip.innerHTML = `<button class="open" type="button"><ha-icon></ha-icon><span></span></button>
-      <button class="del" type="button" title="${t("Sterge")}">×</button>`;
+      <button class="del" type="button" title="${t("Șterge")}">×</button>`;
     chip.querySelector("ha-icon").setAttribute(
       "icon",
       item.mime === "application/pdf" ? "mdi:file-pdf-box" : "mdi:file-image-outline"
@@ -2448,7 +2644,7 @@ class VehicleManagerCard extends HTMLElement {
       /* primul click cere confirmare, al doilea sterge */
       if (del.dataset.confirm !== "true") {
         del.dataset.confirm = "true";
-        del.textContent = t("sterge?");
+        del.textContent = t("șterge?");
         setTimeout(() => {
           if (del.isConnected) {
             del.dataset.confirm = "false";
@@ -2460,7 +2656,7 @@ class VehicleManagerCard extends HTMLElement {
       try {
         await this._hass.callWS({ type: FILES_WS_DELETE, file_id: item.id });
       } catch (err) {
-        this._setFilesStatus(t("Fisierul nu a putut fi sters: {err}", { err: err?.message || err?.code || err }));
+        this._setFilesStatus(t("Fișierul nu a putut fi șters: {err}", { err: err?.message || err?.code || err }));
       }
     });
     return chip;
@@ -2475,12 +2671,12 @@ class VehicleManagerCard extends HTMLElement {
       });
       window.open(this._hass.hassUrl ? this._hass.hassUrl(signed.path) : signed.path, "_blank");
     } catch (err) {
-      this._setFilesStatus(t("Fisierul nu a putut fi deschis: {err}", { err: err?.message || err?.code || err }));
+      this._setFilesStatus(t("Fișierul nu a putut fi deschis: {err}", { err: err?.message || err?.code || err }));
     }
   }
 
   async _uploadFile(slot, file) {
-    this._setFilesStatus(t("Se incarca..."));
+    this._setFilesStatus(t("Se încarcă..."));
     try {
       const prepared = file.type.startsWith("image/") ? await shrinkImage(file) : file;
       const form = new FormData();
@@ -2494,13 +2690,13 @@ class VehicleManagerCard extends HTMLElement {
             headers: { Authorization: `Bearer ${this._hass.auth?.data?.access_token}` },
           });
       if (response.status === 404 && !this._files) {
-        throw new Error(t("serverul ruleaza o versiune veche a integrarii"));
+        throw new Error(t("serverul rulează o versiune veche a integrării"));
       }
       const body = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(body.message || `HTTP ${response.status}`);
-      this._setFilesStatus(t("Incarcat: {name}.", { name: body.name }));
+      this._setFilesStatus(t("Încărcat: {name}.", { name: body.name }));
     } catch (err) {
-      this._setFilesStatus(t("Fisierul nu a putut fi incarcat: {err}", { err: err?.message || err }));
+      this._setFilesStatus(t("Fișierul nu a putut fi încărcat: {err}", { err: err?.message || err }));
     }
   }
 
@@ -2520,6 +2716,7 @@ class VehicleManagerCard extends HTMLElement {
     this._el.costs.hidden = false;
     this._buildCosts();
     this._subscribeCosts();
+    this._revealPanel(this._el.costs);
   }
 
   _closeCosts() {
@@ -2552,8 +2749,8 @@ class VehicleManagerCard extends HTMLElement {
       .catch((err) => {
         this._setCostsStatus(
           err?.code === "unknown_command"
-            ? t("Serverul ruleaza o versiune veche a integrarii (fara Costuri). Actualizeaza integrarea si restarteaza Home Assistant.")
-            : t("Costurile nu pot fi incarcate: {err}", { err: err?.message || err?.code || err })
+            ? t("Serverul rulează o versiune veche a integrării (fără Costuri). Actualizează integrarea și restartează Home Assistant.")
+            : t("Costurile nu pot fi încărcate: {err}", { err: err?.message || err?.code || err })
         );
         return null;
       });
@@ -2588,10 +2785,12 @@ class VehicleManagerCard extends HTMLElement {
       <div class="th-head">
         <h2>${t("Costuri")}</h2>
         <select class="c-year" aria-label="${t("Perioada")}"></select>
-        <button class="btn c-export" type="button" title="${t("Descarca perioada aleasa ca fisier CSV (Excel)")}">${t("Export CSV")}</button>
-        <span class="th-status c-status">${t("Se incarca...")}</span>
+        <button class="btn c-export" type="button" title="${t("Descarcă perioada aleasă ca fișier CSV (Excel)")}">${t("Export CSV")}</button>
+        <span class="th-status c-status">${t("Se încarcă...")}</span>
+        <button class="th-close" type="button" title="${t("Închide")}" aria-label="${t("Închide")}">×</button>
       </div>
       <div class="c-tiles"></div>
+      <div class="c-chart"></div>
       <div class="c-bars"></div>
       <form class="c-form">
         <label><span>${t("Data")}</span><input type="date" name="date" required></label>
@@ -2600,8 +2799,8 @@ class VehicleManagerCard extends HTMLElement {
         <label><span>${t("Kilometraj")}</span><input type="number" name="mileage" min="0" step="1" inputmode="numeric"></label>
         <label class="c-fuel" hidden><span class="c-qty-label">${t("Cantitate")}</span><input type="number" name="quantity" min="0" step="0.01" inputmode="decimal"></label>
         <label class="c-fuel c-check" hidden><input type="checkbox" name="full_tank" checked><span>${t("Plin complet")}</span></label>
-        <label class="c-note"><span>${t("Nota")}</span><input type="text" name="note" maxlength="200" placeholder="${t("optional")}"></label>
-        <button class="btn primary" type="submit">${t("Adauga")}</button>
+        <label class="c-note"><span>${t("Notă")}</span><input type="text" name="note" maxlength="200" placeholder="${t("opțional")}"></label>
+        <button class="btn primary" type="submit">${t("Adaugă")}</button>
       </form>
       <div class="c-list"></div>
     `;
@@ -2632,6 +2831,7 @@ class VehicleManagerCard extends HTMLElement {
     });
 
     root.querySelector(".c-export").addEventListener("click", () => this._exportCosts());
+    root.querySelector(".th-close").addEventListener("click", () => this._closeCosts());
 
     root.querySelector(".c-year").addEventListener("change", (event) => {
       this._costs.year = event.target.value;
@@ -2644,7 +2844,7 @@ class VehicleManagerCard extends HTMLElement {
   async _addExpense(form) {
     const amount = Number(form.elements.amount.value);
     if (!(amount > 0)) {
-      this._setCostsStatus(t("Introdu o suma mai mare decat zero."));
+      this._setCostsStatus(t("Introdu o suma mai mare decât zero."));
       return;
     }
     const message = {
@@ -2672,11 +2872,11 @@ class VehicleManagerCard extends HTMLElement {
       form.elements.quantity.value = "";
       form.elements.full_tank.checked = true;
       this._setCostsStatus(
-        t("Adaugat: {what}, {amount}.", { what: t(EXPENSE_CATEGORIES[message.category][0]), amount: this._money(amount) }) +
-          (noMileageForFuel ? " " + t("Fara kilometraj, alimentarea nu intra in calculul consumului.") : "")
+        t("Adăugat: {what}, {amount}.", { what: t(EXPENSE_CATEGORIES[message.category][0]), amount: this._money(amount) }) +
+          (noMileageForFuel ? " " + t("Fără kilometraj, alimentarea nu intră în calculul consumului.") : "")
       );
     } catch (err) {
-      this._setCostsStatus(t("Cheltuiala nu a putut fi salvata: {err}", { err: err?.message || err?.code || err }));
+      this._setCostsStatus(t("Cheltuiala nu a putut fi salvată: {err}", { err: err?.message || err?.code || err }));
     } finally {
       submit.disabled = false;
     }
@@ -2698,8 +2898,37 @@ class VehicleManagerCard extends HTMLElement {
       const url = this._hass.hassUrl ? this._hass.hassUrl(signed.path) : signed.path;
       window.open(url, "_blank");
     } catch (err) {
-      this._setCostsStatus(t("Exportul nu a reusit: {err}", { err: err?.message || err?.code || err }));
+      this._setCostsStatus(t("Exportul nu a reușit: {err}", { err: err?.message || err?.code || err }));
     }
+  }
+
+  _renderCostChart(items, period) {
+    const chart = this._el.costs.querySelector(".c-chart");
+    let buckets;
+    if (period === "all") {
+      const years = [...new Set(items.map((e) => e.date.slice(0, 4)))].sort();
+      buckets = years.map((year) => [year, items.filter((e) => e.date.startsWith(year)).reduce((a, e) => a + e.amount, 0)]);
+    } else {
+      const month = new Intl.DateTimeFormat(uiLocale(this._hass), { month: "short" });
+      buckets = Array.from({ length: 12 }, (_, i) => {
+        const key = `${period}-${String(i + 1).padStart(2, "0")}`;
+        const total = items.filter((e) => e.date.startsWith(key)).reduce((a, e) => a + e.amount, 0);
+        return [month.format(new Date(Number(period), i, 1)).replace(".", ""), total];
+      });
+    }
+    const max = Math.max(0, ...buckets.map(([, total]) => total));
+    chart.hidden = !max;
+    chart.replaceChildren(
+      ...buckets.map(([label, total]) => {
+        const col = document.createElement("div");
+        col.className = "c-col";
+        col.title = `${label}: ${this._money(total)}`;
+        col.innerHTML = `<span class="bar"><span></span></span><span class="lbl"></span>`;
+        col.querySelector(".bar span").style.height = `${max ? Math.max(total ? 3 : 0, (total / max) * 100) : 0}%`;
+        col.querySelector(".lbl").textContent = label;
+        return col;
+      })
+    );
   }
 
   async _deleteExpense(button, expense) {
@@ -2710,7 +2939,7 @@ class VehicleManagerCard extends HTMLElement {
       setTimeout(() => {
         if (button.isConnected) {
           button.dataset.confirm = "false";
-          button.textContent = t("Sterge");
+          button.textContent = t("Șterge");
         }
       }, 3000);
       return;
@@ -2720,7 +2949,7 @@ class VehicleManagerCard extends HTMLElement {
       await this._hass.callWS({ type: EXPENSES_WS_DELETE, expense_id: expense.id });
     } catch (err) {
       button.disabled = false;
-      this._setCostsStatus(t("Cheltuiala nu a putut fi stearsa: {err}", { err: err?.message || err?.code || err }));
+      this._setCostsStatus(t("Cheltuiala nu a putut fi ștearsă: {err}", { err: err?.message || err?.code || err }));
     }
   }
 
@@ -2735,7 +2964,7 @@ class VehicleManagerCard extends HTMLElement {
     const yearSelect = root.querySelector(".c-year");
     const years = new Set([String(new Date().getFullYear())]);
     for (const item of all) years.add(item.date.slice(0, 4));
-    const choices = [...[...years].sort().reverse().map((y) => [y, t("Anul {year}", { year: y })]), ["all", t("Toti anii")]];
+    const choices = [...[...years].sort().reverse().map((y) => [y, t("Anul {year}", { year: y })]), ["all", t("Toți anii")]];
     yearSelect.replaceChildren(
       ...choices.map(([value, label]) => {
         const option = document.createElement("option");
@@ -2760,7 +2989,7 @@ class VehicleManagerCard extends HTMLElement {
       : [
           [t("Anul {year}", { year: costs.year }), this._money(sum(items))],
           [t("Total general"), this._money(sum(all))],
-          [t("Cheltuieli in an"), String(items.length)],
+          [t("Cheltuieli în an"), String(items.length)],
         ];
     /* consumul, din intervalele "plin la plin" calculate pe server */
     const segments = (costs.fuel?.segments || []).filter(
@@ -2774,7 +3003,7 @@ class VehicleManagerCard extends HTMLElement {
       tiles.push(
         [t("Consum mediu"), `${formatNumber(Math.round((quantity / fuelKm) * 1000) / 10)} ${unit}/100 km`],
         [t("Combustibil pe km"), this._money(fuelCost / fuelKm)],
-        [t("Km masurati"), `${formatNumber(fuelKm)} km`]
+        [t("Km măsurați"), `${formatNumber(fuelKm)} km`]
       );
     }
     const consumptionById = new Map(segments.map((seg) => [seg.id, seg.consumption]));
@@ -2789,6 +3018,9 @@ class VehicleManagerCard extends HTMLElement {
         return tile;
       })
     );
+
+    /* pe luni (anul ales) sau pe ani (toti anii) */
+    this._renderCostChart(costs.year === "all" ? all : items, costs.year);
 
     /* pe categorii */
     const byCategory = new Map();
@@ -2806,6 +3038,7 @@ class VehicleManagerCard extends HTMLElement {
         row.querySelector("ha-icon").setAttribute("icon", icon);
         row.querySelector(".lbl").textContent = label;
         row.querySelector(".fill").style.width = `${max ? Math.max(2, (amount / max) * 100) : 0}%`;
+        row.querySelector(".fill").style.background = categoryColor(key);
         row.querySelector(".amt").textContent = this._money(amount);
         return row;
       })
@@ -2817,8 +3050,8 @@ class VehicleManagerCard extends HTMLElement {
       const empty = document.createElement("div");
       empty.className = "c-empty";
       empty.textContent = costs.loaded
-        ? t("Nicio cheltuiala in perioada aleasa. Adaug-o din formularul de mai sus.")
-        : t("Se incarca...");
+        ? t("Nicio cheltuiala în perioada aleasă. Adaug-o din formularul de mai sus.")
+        : t("Se încarcă...");
       list.replaceChildren(empty);
     } else {
       list.replaceChildren(
@@ -2848,10 +3081,10 @@ class VehicleManagerCard extends HTMLElement {
             .filter(Boolean)
             .join(" · ");
           row.querySelector(".amt").textContent = this._money(expense.amount);
-          const remove = this._themeButton(t("Sterge"), "btn c-del", () =>
+          const remove = this._themeButton(t("Șterge"), "btn c-del", () =>
             this._deleteExpense(remove, expense)
           );
-          remove.title = t("Sterge (id {id})", { id: expense.id });
+          remove.title = t("Șterge (id {id})", { id: expense.id });
           row.append(remove);
           return row;
         })
@@ -2860,7 +3093,7 @@ class VehicleManagerCard extends HTMLElement {
 
     if (costs.loaded) {
       this._setCostsStatus(
-        all.length ? "" : t("Inca nu ai inregistrat cheltuieli pentru acest vehicul.")
+        all.length ? "" : t("Încă nu ai înregistrat cheltuieli pentru acest vehicul.")
       );
     }
   }
@@ -2950,6 +3183,7 @@ class VehicleManagerCard extends HTMLElement {
     this._el.themeBtn.setAttribute("aria-expanded", "true");
     this._el.themes.hidden = false;
     this._renderThemes();
+    this._revealPanel(this._el.themes);
   }
 
   _closeThemes() {
@@ -2973,10 +3207,11 @@ class VehicleManagerCard extends HTMLElement {
     const head = document.createElement("div");
     head.className = "th-head";
     head.innerHTML = `<h2>Themes</h2><span class="th-status"></span>`;
+    head.append(this._closeButton(() => this._closeThemes()));
     const status = head.querySelector(".th-status");
     this._themeStatus = status;
     status.textContent =
-      t("Modificarile se vad imediat; apasa Salveaza ca sa le pastrezi pe toate dispozitivele.");
+      t("Modificările se văd imediat; apasă Salvează ca să le păstrezi pe toate dispozitivele.");
 
     /* presetari */
     const presets = document.createElement("div");
@@ -3023,10 +3258,10 @@ class VehicleManagerCard extends HTMLElement {
       this._applyTheme();
       this._renderThemes();
     });
-    const cancel = this._themeButton(t("Renunta"), "btn", () => this._closeThemes());
-    const save = this._themeButton(t("Salveaza"), "btn primary", async () => {
+    const cancel = this._themeButton(t("Renunță"), "btn", () => this._closeThemes());
+    const save = this._themeButton(t("Salvează"), "btn primary", async () => {
       save.disabled = true;
-      status.textContent = t("Se salveaza...");
+      status.textContent = t("Se salvează...");
       try {
         await this._hass.callWS({ type: THEME_WS_SAVE, theme: this._themeDraft });
         this._savedTheme = { ...this._themeDraft };
@@ -3037,8 +3272,8 @@ class VehicleManagerCard extends HTMLElement {
         save.disabled = false;
         status.textContent =
           err?.code === "unknown_command"
-            ? t("Serverul ruleaza o versiune veche a integrarii (fara Themes). Copiaza tot folderul custom_components/vehicle_manager, inclusiv theme.py, si restarteaza Home Assistant.")
-            : t("Tema nu a putut fi salvata: {err}", { err: err?.message || err?.code || err });
+            ? t("Serverul rulează o versiune veche a integrării (fără Themes). Copiază tot folderul custom_components/vehicle_manager, inclusiv theme.py, și restartează Home Assistant.")
+            : t("Tema nu a putut fi salvată: {err}", { err: err?.message || err?.code || err });
       }
     });
     actions.append(reset, cancel, save);
@@ -3053,15 +3288,15 @@ class VehicleManagerCard extends HTMLElement {
     const preview = document.createElement("div");
     preview.className = "th-bg-preview";
     if (draft.bg_image) preview.style.backgroundImage = `url("${draft.bg_image}")`;
-    else preview.textContent = t("fara imagine");
+    else preview.textContent = t("fără imagine");
 
     const actions = document.createElement("div");
     actions.className = "th-bg-actions";
     const file = document.createElement("input");
     file.type = "file";
     file.accept = "image/jpeg,image/png,image/webp,image/gif";
-    const upload = this._themeButton(t("Incarca imagine"), "btn", () => file.click());
-    const remove = this._themeButton(t("Elimina"), "btn", () =>
+    const upload = this._themeButton(t("Încarcă imagine"), "btn", () => file.click());
+    const remove = this._themeButton(t("Elimină"), "btn", () =>
       this._setDraft({ bg_image: "" }, true)
     );
     remove.hidden = !draft.bg_image;
@@ -3083,7 +3318,7 @@ class VehicleManagerCard extends HTMLElement {
       const value = url.value.trim();
       if (value && !BG_URL_RE.test(value)) {
         this._themeStatus.textContent =
-          t("URL invalid: trebuie sa inceapa cu / sau https:// si sa nu contina spatii, ghilimele sau paranteze.");
+          t("URL invalid: trebuie să înceapă cu / sau https:// și să nu conțină spații, ghilimele sau paranteze.");
         return;
       }
       this._setDraft({ bg_image: value }, true);
@@ -3096,12 +3331,12 @@ class VehicleManagerCard extends HTMLElement {
 
   async _uploadBackground(file) {
     const status = this._themeStatus;
-    status.textContent = t("Se pregateste imaginea...");
+    status.textContent = t("Se pregătește imaginea...");
     try {
       const prepared = await shrinkImage(file);
       const form = new FormData();
       form.append("file", prepared, file.name || "fundal");
-      status.textContent = t("Se incarca imaginea...");
+      status.textContent = t("Se încarcă imaginea...");
 
       const hass = this._hass;
       const response = hass.fetchWithAuth
@@ -3114,7 +3349,7 @@ class VehicleManagerCard extends HTMLElement {
 
       if (response.status === 404) {
         throw new Error(
-          t("serverul ruleaza o versiune veche a integrarii; copiaza theme.py nou si restarteaza Home Assistant")
+          t("serverul rulează o versiune veche a integrării; copiază theme.py nou și restartează Home Assistant")
         );
       }
       const body = await response.json().catch(() => ({}));
@@ -3122,10 +3357,27 @@ class VehicleManagerCard extends HTMLElement {
 
       if (!this._themeDraft) return; /* panoul a fost inchis intre timp */
       this._setDraft({ bg_image: body.url }, true);
-      this._themeStatus.textContent = t("Imagine incarcata. Apasa Salveaza ca sa o pastrezi.");
+      this._themeStatus.textContent = t("Imagine încărcată. Apasă Salvează ca să o păstrezi.");
     } catch (err) {
-      status.textContent = t("Imaginea nu a putut fi incarcata: {err}", { err: err?.message || err });
+      status.textContent = t("Imaginea nu a putut fi încărcată: {err}", { err: err?.message || err });
     }
+  }
+
+  _closeButton(onClick) {
+    const button = this._themeButton("×", "th-close", onClick);
+    button.title = t("Închide");
+    button.setAttribute("aria-label", t("Închide"));
+    return button;
+  }
+
+  /* Pe telefon panoul poate fi sub ecran: il aducem in fata dupa deschidere. */
+  _revealPanel(panel) {
+    requestAnimationFrame(() => {
+      const box = panel.getBoundingClientRect();
+      if (box.top < 0 || box.top > window.innerHeight * 0.6) {
+        panel.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
   }
 
   _themeButton(label, className, onClick) {
@@ -3229,7 +3481,7 @@ class VehicleManagerCard extends HTMLElement {
     }
     this._el.stageMsg.hidden = false;
     this._el.stageMsg.textContent =
-      t("Modelul 3D nu a putut fi incarcat (biblioteca three.js nu este accesibila). Adauga o poza vehiculului sau seteaza three_src catre o copie locala.");
+      t("Modelul 3D nu a putut fi încărcat (biblioteca three.js nu este accesibilă). Adaugă o poză vehiculului sau setează three_src către o copie locală.");
   }
 
   _setPhotoMode(enabled) {
@@ -3273,7 +3525,7 @@ class VehicleManagerCard extends HTMLElement {
       el.root.hidden = true;
       el.empty.hidden = false;
       el.empty.innerHTML =
-        t("Niciun vehicul gasit. Adauga unul din <code>Setari &rsaquo; Dispozitive si servicii &rsaquo; Adauga integrare &rsaquo; Vehicle Manager</code>.");
+        t("Niciun vehicul găsit. Adaugă unul din <code>Setări &rsaquo; Dispozitive și servicii &rsaquo; Adaugă integrare &rsaquo; Vehicle Manager</code>.");
       return;
     }
     el.root.hidden = false;
@@ -3326,12 +3578,16 @@ class VehicleManagerCard extends HTMLElement {
 
     /* --- cap --- */
     el.led.dataset.status = status;
+    el.led.title = t(STATUS_LABEL[status] || "");
     el.title.textContent =
       this._config.title || attributes.vehicle_name || state.attributes.friendly_name || t("Vehicul");
     const subtitleParts = [vehicle.make, vehicle.model, vehicle.year].filter(Boolean);
     el.subtitle.textContent = subtitleParts.join(" · ") || t(STATUS_LABEL[status] || "");
     el.plate.textContent = vehicle.license_plate || "";
     el.plate.hidden = !vehicle.license_plate;
+
+    /* --- rezumat sub caracteristici (umple spatiul gol de pe desktop) --- */
+    this._renderMini(state, documents, entities);
 
     /* --- caracteristici --- */
     el.specList.replaceChildren(
@@ -3369,17 +3625,21 @@ class VehicleManagerCard extends HTMLElement {
     this._viewer?.setVehicle({
       model3d: attributes.model_3d || null,
       colorHex: vehicle.color_hex || "#9aa4af",
+      bodyType:
+        this._config.body_type && this._config.body_type !== "auto"
+          ? this._config.body_type
+          : guessBodyType(vehicle),
     });
     this._applyStageSource();
 
     el.hud.textContent = attributes.model_3d
       ? t("model 3d · trage pentru rotire")
-      : t("randare procedurala · trage pentru rotire");
+      : t("randare procedurală · trage pentru rotire");
 
     /* --- subsol --- */
     const attention = attributes.attention || [];
     el.footLeft.textContent = attention.length
-      ? t("Necesita atentie: {list}", { list: attention.map((a) => t(a)).join(", ") })
+      ? t("Necesită atenție: {list}", { list: attention.map((a) => t(a)).join(", ") })
       : `Toate actele sunt in regula`;
     el.footRight.textContent = t("prag {days}z / {km}km", {
       days: attributes.warn_days,
@@ -3408,6 +3668,39 @@ class VehicleManagerCard extends HTMLElement {
       : SPEC_ROWS;
   }
 
+  _renderMini(state, documents, entities) {
+    const tiles = [];
+    const cost = this._hass.states[entities.expenses_year];
+    if (cost && !isNaN(Number(cost.state))) {
+      const currency = cost.attributes.unit_of_measurement || "";
+      tiles.push([t("Costuri {year}", { year: new Date().getFullYear() }), `${formatNumber(Math.round(Number(cost.state)))} ${currency}`]);
+    }
+    const fuel = this._hass.states[entities.fuel_consumption];
+    if (fuel && !isNaN(Number(fuel.state)) && fuel.state !== "") {
+      tiles.push([t("Consum"), `${formatNumber(Number(fuel.state))} ${fuel.attributes.unit_of_measurement || ""}`]);
+    }
+    /* urmatoarea scadenta dintre actele afisate */
+    const remaining = (d) =>
+      d.days ?? (d.km_remaining !== null && d.km_remaining !== undefined ? d.km_remaining / 50 : Infinity);
+    const next = this._visibleDocuments(documents)
+      .filter((d) => d.status !== "unknown")
+      .sort((a, b) => remaining(a) - remaining(b))[0];
+    if (next) tiles.push([t("Urmează"), `${t(next.label)} · ${shortRemaining(next)}`, next.status]);
+
+    this._el.mini.hidden = !tiles.length;
+    this._el.mini.replaceChildren(
+      ...tiles.map(([key, value, status]) => {
+        const tile = document.createElement("div");
+        tile.className = "mini-tile";
+        if (status) tile.dataset.status = status;
+        tile.innerHTML = `<span class="k"></span><span class="v"></span>`;
+        tile.querySelector(".k").textContent = key;
+        tile.querySelector(".v").textContent = value;
+        return tile;
+      })
+    );
+  }
+
   _renderUrgent(documents, entities) {
     const limit = clamp(Math.round(Number(this._config.compact_items) || 3), 1, 5);
     /*
@@ -3429,7 +3722,7 @@ class VehicleManagerCard extends HTMLElement {
       node.type = "button";
       node.className = "u-item";
       node.dataset.status = document_.status;
-      node.innerHTML = `<span class="u-dot"></span><span class="u-text"><span class="u-name"></span><span class="u-val"></span></span>`;
+      node.innerHTML = `<ha-icon class="u-dot" icon="${STATUS_ICON[document_.status] || "mdi:circle-outline"}"></ha-icon><span class="u-text"><span class="u-name"></span><span class="u-val"></span></span>`;
       node.querySelector(".u-name").textContent = t(document_.label);
       node.querySelector(".u-val").textContent = this._shortRemaining(document_);
       const entityId =
@@ -3441,13 +3734,13 @@ class VehicleManagerCard extends HTMLElement {
     if (!items.some((d) => d.status === "warning" || d.status === "expired")) {
       const ok = document.createElement("div");
       ok.className = "u-all-ok";
-      ok.innerHTML = `<ha-icon icon="mdi:shield-check"></ha-icon><span>${t("Toate actele sunt in regula")}</span>`;
+      ok.innerHTML = `<ha-icon icon="mdi:shield-check"></ha-icon><span>${t("Toate actele sunt în regulă")}</span>`;
       nodes.unshift(ok);
     }
     if (!items.length) {
       const empty = document.createElement("div");
       empty.className = "u-name";
-      empty.textContent = t("Nicio scadenta completata");
+      empty.textContent = t("Nicio scadență completată");
       nodes.push(empty);
     }
     this._el.urgent.replaceChildren(...nodes);
@@ -3470,9 +3763,9 @@ class VehicleManagerCard extends HTMLElement {
       return node;
     }
     if (parking.state === "driving") {
-      when.textContent = t("in mers");
+      when.textContent = t("în mers");
     } else {
-      when.textContent = timeAgo(parking.time) || t("parcata");
+      when.textContent = timeAgo(parking.time) || t("parcată");
     }
     if (parking.latitude != null && parking.longitude != null) {
       const link = document.createElement("a");
@@ -3480,7 +3773,7 @@ class VehicleManagerCard extends HTMLElement {
       link.href = `https://www.google.com/maps/search/?api=1&query=${parking.latitude},${parking.longitude}`;
       link.target = "_blank";
       link.rel = "noopener";
-      link.title = parking.state === "driving" ? t("Ultimul loc de parcare") : t("Navigheaza pana la masina");
+      link.title = parking.state === "driving" ? t("Ultimul loc de parcare") : t("Navighează până la mașina");
       link.innerHTML = `<ha-icon icon="mdi:navigation-variant"></ha-icon>`;
       node.querySelector(".v").append(link);
     }
@@ -3540,21 +3833,29 @@ class VehicleManagerCard extends HTMLElement {
     const offset = circumference * (1 - fraction);
 
     let badge = "—";
-    if (days !== null && days !== undefined) badge = String(days);
-    else if (kmRemaining !== null && kmRemaining !== undefined) {
-      badge = `${Math.round(kmRemaining / 1000)}k`;
+    let unit = "";
+    if (days !== null && days !== undefined) {
+      badge = String(days);
+      unit = Math.abs(days) === 1 ? t("zi") : t("zile");
+    } else if (kmRemaining !== null && kmRemaining !== undefined) {
+      /* "-1,4k" in loc de "-1k": o zecimala sub 10.000 km */
+      const thousands = kmRemaining / 1000;
+      badge = Math.abs(thousands) < 10
+        ? `${formatNumber(Math.round(thousands * 10) / 10)}k`
+        : `${Math.round(thousands)}k`;
+      unit = "km";
     }
 
     const dateText = formatDate(document_.date, language);
     const lines = [];
     if (days !== null && days !== undefined) {
-      lines.push(days < 0 ? t("expirat acum {n} zile", { n: Math.abs(days) }) : t("{n} zile ramase", { n: days }));
+      lines.push(days < 0 ? t("expirat acum {n} zile", { n: Math.abs(days) }) : t("{n} zile rămase", { n: days }));
     }
     if (kmRemaining !== null && kmRemaining !== undefined) {
       lines.push(
         kmRemaining < 0
-          ? t("depasit cu {km} km", { km: formatNumber(Math.abs(kmRemaining)) })
-          : t("{km} km ramasi", { km: formatNumber(kmRemaining) })
+          ? t("depășit cu {km} km", { km: formatNumber(Math.abs(kmRemaining)) })
+          : t("{km} km rămași", { km: formatNumber(kmRemaining) })
       );
     }
 
@@ -3575,12 +3876,12 @@ class VehicleManagerCard extends HTMLElement {
                   stroke-dasharray="${circumference.toFixed(2)}"
                   stroke-dashoffset="${offset.toFixed(2)}"></circle>
         </svg>
-        <span class="num">${badge}</span>
+        <span class="num">${badge}<small>${unit}</small></span>
       </span>
       <span class="meta">
-        <span class="name">${t(document_.label)}${this._clipBadge(document_.key)}</span>
+        <span class="name">${STATUS_ICON[status] ? `<ha-icon class="st" icon="${STATUS_ICON[status]}"></ha-icon>` : ""}${t(document_.label)}${this._clipBadge(document_.key)}</span>
         <span class="main">${dateText || t(STATUS_LABEL[status] || "Necompletat")}</span>
-        <span class="sub">${lines.join(" · ") || t("fara scadenta setata")}</span>
+        <span class="sub">${lines.join(" · ") || t("fără scadență setată")}</span>
       </span>
       <ha-icon icon="${document_.icon}"></ha-icon>
     `;
@@ -3636,6 +3937,22 @@ const editorSchema = () => [
   },
   { name: "navigation_path", selector: { navigation: {} } },
   {
+    name: "body_type",
+    selector: {
+      select: {
+        mode: "dropdown",
+        options: [
+          ["auto", "Automat (după marca și model)"],
+          ["sedan", "Sedan"],
+          ["hatchback", "Hatchback"],
+          ["wagon", "Break"],
+          ["suv", "SUV"],
+          ["coupe", "Coupe"],
+        ].map(([value, label]) => ({ value, label: t(label) })),
+      },
+    },
+  },
+  {
     name: "documents",
     selector: {
       select: {
@@ -3661,17 +3978,18 @@ const editorSchema = () => [
 const EDITOR_LABELS = {
   title: "Titlu (gol = numele vehiculului)",
   default_vehicle: "Vehicul implicit",
-  auto_rotate: "Rotire automata",
+  auto_rotate: "Rotire automată",
   show_photo_toggle: "Buton comutare poza",
   rotate_speed: "Viteza de rotire",
   show_theme_button: "Buton Themes (culorile se aleg din card)",
   show_costs_button: "Buton Costuri (istoricul cheltuielilor)",
-  show_files_button: "Buton Dosar (poze si PDF-uri cu actele)",
-  compact: "Mod compact (pentru pagina principala)",
-  compact_items: "Acte afisate in modul compact",
-  navigation_path: "Pagina deschisa din modul compact (ex. /lovelace/masini)",
-  documents: "Acte afisate (nimic bifat: cele 5 de baza + actele completate)",
-  specs: "Caracteristici afisate (nimic bifat: toate)",
+  show_files_button: "Buton Dosar (poze și PDF-uri cu actele)",
+  compact: "Mod compact (pentru pagina principală)",
+  compact_items: "Acte afișate în modul compact",
+  navigation_path: "Pagina deschisă din modul compact (ex. /lovelace/mașini)",
+  documents: "Acte afișate (nimic bifat: cele 5 de bază + actele completate)",
+  specs: "Caracteristici afișate (nimic bifat: toate)",
+  body_type: "Caroseria mașinii desenate (fără model 3D)",
   three_src: "Sursa three.js",
 };
 
@@ -3736,7 +4054,7 @@ ha-card {
 h2 {
   margin: 0 0 12px; display: flex; align-items: center; gap: 10px;
   font: 600 calc(11px * var(--vm-fs, 1))/1 var(--vm-mono, monospace);
-  letter-spacing: .2em; text-transform: uppercase; color: var(--vm-accent, var(--primary-color));
+  letter-spacing: .14em; text-transform: uppercase; color: var(--vm-accent, var(--primary-color));
 }
 h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--vm-accent, var(--primary-color)), transparent); opacity: .5; }
 .list { display: flex; flex-direction: column; gap: calc(8px * var(--vm-sp, 1)); }
@@ -3757,7 +4075,7 @@ h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg
 .who, .next { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
 .name { font-weight: 650; font-size: calc(14px * var(--vm-fs, 1)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sub, .k {
-  font: calc(10px * var(--vm-fs, 1))/1.3 var(--vm-mono, monospace); letter-spacing: .12em; text-transform: uppercase;
+  font: calc(11px * var(--vm-fs, 1))/1.3 var(--vm-mono, monospace); letter-spacing: .12em; text-transform: uppercase;
   color: var(--vm-dim, var(--secondary-text-color)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .v { font-size: calc(13px * var(--vm-fs, 1)); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -3888,7 +4206,7 @@ class VehicleManagerGarageCard extends HTMLElement {
     if (!vehicles.length) {
       const empty = document.createElement("div");
       empty.className = "empty";
-      empty.textContent = t("Niciun vehicul. Adauga unul din Setari › Dispozitive si servicii › Vehicle Manager.");
+      empty.textContent = t("Niciun vehicul. Adaugă unul din Setări › Dispozitive și servicii › Vehicle Manager.");
       list.replaceChildren(empty);
       return;
     }
@@ -3950,7 +4268,7 @@ class VehicleManagerGarageCard extends HTMLElement {
     }
     const parking = vehicle.parking;
     if (parking) {
-      addStat(t("Parcare"), parking.state === "driving" ? t("in mers") : timeAgo(parking.time));
+      addStat(t("Parcare"), parking.state === "driving" ? t("în mers") : timeAgo(parking.time));
     }
 
     row.addEventListener("click", () => {
@@ -3981,7 +4299,7 @@ class VehicleManagerGarageCardEditor extends HTMLElement {
       this._form = document.createElement("ha-form");
       const labels = {
         title: t("Titlu"),
-        navigation_path: t("Pagina deschisa la atingerea unui vehicul (gol = detaliile vehiculului)"),
+        navigation_path: t("Pagina deschisă la atingerea unui vehicul (gol = detaliile vehiculului)"),
       };
       this._form.computeLabel = (schema) => labels[schema.name] || schema.name;
       this._form.addEventListener("value-changed", (event) => {
