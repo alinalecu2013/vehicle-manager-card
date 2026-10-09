@@ -4,7 +4,8 @@ Card Lovelace pentru integrarea
 [Vehicle Manager](https://github.com/alinalecu2013/ha-vehicle-manager):
 model 3D rotativ al masinii, caracteristici si acte (RCA, ITP, rovinieta, revizie,
 distributie), cu meniu **Themes** (culori, fonturi, aspect, imagine de fundal) si istoric de
-**Costuri** (cheltuieli pe categorii si pe ani).
+**Costuri** (cheltuieli pe categorii si pe ani, export CSV), **Dosar** cu actele scanate si
+cardul **Garaj** cu toate masinile. In romana sau engleza, dupa limba din Home Assistant.
 
 ![Vehicle Manager Card](https://raw.githubusercontent.com/alinalecu2013/vehicle-manager-card/main/images/card.png)
 
@@ -52,6 +53,12 @@ mai urgente):
 type: custom:vehicle-manager-card
 compact: true
 navigation_path: /lovelace/masini   # optional
+```
+
+Cardul Garaj, cu toate vehiculele:
+
+```yaml
+type: custom:vehicle-manager-garage-card
 ```
 
 Toate optiunile si functiile sunt descrise in
