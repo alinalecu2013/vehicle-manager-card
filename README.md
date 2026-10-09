@@ -61,6 +61,9 @@ Cardul Garaj, cu toate vehiculele:
 type: custom:vehicle-manager-garage-card
 ```
 
+Atingerea unei mașini deschide dashboardul **AUTO Check** (sau cel ales în editor) cu mașina
+respectivă selectată.
+
 Toate optiunile si functiile sunt descrise in
 [documentatia integrarii](https://github.com/alinalecu2013/ha-vehicle-manager#cardul).
 
