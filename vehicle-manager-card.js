@@ -6,8 +6,234 @@
  * model 3D rotativ in centru, acte in dreapta.
  */
 
-const CARD_VERSION = "1.9.0";
+const CARD_VERSION = "2.0.0";
 const DEFAULT_THREE = "https://esm.sh/three@0.160.0";
+
+/* ------------------------------------------------------------------ */
+/* Limba: romana cand Home Assistant e in romana, altfel engleza        */
+/* ------------------------------------------------------------------ */
+
+const detectLang = (code) => (String(code || "").toLowerCase().startsWith("ro") ? "ro" : "en");
+let LANG = detectLang(document.documentElement.lang || navigator.language);
+
+function setLanguage(hass) {
+  LANG = detectLang(hass?.locale?.language || hass?.language || LANG);
+}
+
+/* Textele raman in romana in cod; EN are traducerile. {nume} se inlocuieste din vars. */
+function t(text, vars) {
+  let out = LANG === "ro" ? text : EN[text] ?? text;
+  if (vars) for (const [key, value] of Object.entries(vars)) out = out.split(`{${key}}`).join(String(value));
+  return out;
+}
+
+const EN = {
+  "Valabil": "Valid",
+  "Expira curand": "Expiring soon",
+  "Expirat": "Expired",
+  "Necompletat": "Not set",
+  "RCA": "Insurance (RCA)",
+  "ITP": "Inspection (ITP)",
+  "Rovinieta": "Road tax",
+  "CASCO": "CASCO",
+  "Revizie": "Service",
+  "Distributie": "Timing belt",
+  "Trusa medicala": "First aid kit",
+  "Extinctor": "Fire extinguisher",
+  "Impozit auto": "Vehicle tax",
+  "Schimb anvelope": "Tyre change",
+  "Marca": "Make",
+  "Model": "Model",
+  "An fabricatie": "Year",
+  "Kilometraj": "Mileage",
+  "Culoare": "Color",
+  "Capacitate motor": "Engine",
+  "Combustibil": "Fuel",
+  "Nr. inmatriculare": "License plate",
+  "Parcare": "Parking",
+  "Benzina": "Petrol",
+  "Diesel": "Diesel",
+  "GPL": "LPG",
+  "Benzina + GPL": "Petrol + LPG",
+  "Hibrid": "Hybrid",
+  "Hibrid plug-in": "Plug-in hybrid",
+  "Electric": "Electric",
+  "Altul": "Other",
+  "azi": "today",
+  "maine": "tomorrow",
+  "{n} zile": "{n} days",
+  "expirat de {n} z": "expired {n} d ago",
+  "depasit {km} km": "{km} km overdue",
+  "chiar acum": "just now",
+  "acum {n} min": "{n} min ago",
+  "acum {n} h": "{n} h ago",
+  "ieri": "yesterday",
+  "acum {n} zile": "{n} days ago",
+  "expirat acum {n} zile": "expired {n} days ago",
+  "{n} zile ramase": "{n} days left",
+  "depasit cu {km} km": "{km} km overdue",
+  "{km} km ramasi": "{km} km left",
+  "fara scadenta setata": "no due date set",
+  "in mers": "driving",
+  "parcata": "parked",
+  "Reparatii": "Repairs",
+  "Anvelope": "Tyres",
+  "Spalare": "Car wash",
+  "Amenzi": "Fines",
+  "Taxe si impozit": "Taxes",
+  "Accesorii": "Accessories",
+  "Altele": "Other",
+  "Alte documente (talon, cartea masinii...)": "Other documents (registration, vehicle book...)",
+  "Culori": "Colors",
+  "Foloseste culorile temei Home Assistant": "Use the Home Assistant theme colors",
+  "Accent principal": "Primary accent",
+  "Accent secundar": "Secondary accent",
+  "Fundal": "Background",
+  "Panouri": "Panels",
+  "Text secundar": "Secondary text",
+  "Linii si contururi": "Lines and borders",
+  "Stare: valabil": "Status: valid",
+  "Stare: expira curand": "Status: expiring soon",
+  "Stare: expirat": "Status: expired",
+  "Futurist (implicit)": "Futuristic (default)",
+  "Fontul Home Assistant": "Home Assistant font",
+  "Fontul sistemului": "System font",
+  "Rotunjit": "Rounded",
+  "Dimensiune font": "Font size",
+  "Aspect": "Layout",
+  "Spatiere": "Spacing",
+  "Rotunjire colturi": "Corner radius",
+  "Opacitate panouri": "Panel opacity",
+  "Estompare panouri": "Panel blur",
+  "Intensitate stralucire": "Glow intensity",
+  "Grila de fundal": "Background grid",
+  "Scena 3D": "3D scene",
+  "Inaltime scena": "Scene height",
+  "Imagine de fundal": "Background image",
+  "Imagine": "Image",
+  "Unde se afiseaza": "Shown on",
+  "Tot cardul": "Whole card",
+  "Doar scena 3D": "3D scene only",
+  "Incadrare": "Fit",
+  "Umple": "Cover",
+  "Potriveste": "Contain",
+  "Mozaic": "Tile",
+  "Pozitie": "Position",
+  "Centru": "Center",
+  "Sus": "Top",
+  "Jos": "Bottom",
+  "Acoperire cu culoarea de fundal": "Background color overlay",
+  "Estompare imagine": "Image blur",
+  "Modificarile se vad imediat; apasa Salveaza ca sa le pastrezi pe toate dispozitivele.": "Changes apply instantly; press Save to keep them on all devices.",
+  "Implicit": "Default",
+  "Renunta": "Cancel",
+  "Salveaza": "Save",
+  "Se salveaza...": "Saving...",
+  "Tema nu a putut fi salvata: {err}": "The theme could not be saved: {err}",
+  "Serverul ruleaza o versiune veche a integrarii (fara Themes). Copiaza tot folderul custom_components/vehicle_manager, inclusiv theme.py, si restarteaza Home Assistant.": "The server runs an old version of the integration (without Themes). Update the integration and restart Home Assistant.",
+  "fara imagine": "no image",
+  "Incarca imagine": "Upload image",
+  "Elimina": "Remove",
+  "sau un URL: /local/fundal.jpg, https://...": "or a URL: /local/background.jpg, https://...",
+  "URL invalid: trebuie sa inceapa cu / sau https:// si sa nu contina spatii, ghilimele sau paranteze.": "Invalid URL: it must start with / or https:// and contain no spaces, quotes or parentheses.",
+  "Se pregateste imaginea...": "Preparing the image...",
+  "Se incarca imaginea...": "Uploading the image...",
+  "serverul ruleaza o versiune veche a integrarii; copiaza theme.py nou si restarteaza Home Assistant": "the server runs an old version of the integration; update it and restart Home Assistant",
+  "Imagine incarcata. Apasa Salveaza ca sa o pastrezi.": "Image uploaded. Press Save to keep it.",
+  "Imaginea nu a putut fi incarcata: {err}": "The image could not be uploaded: {err}",
+  "Selecteaza vehiculul": "Select vehicle",
+  "Costuri": "Costs",
+  "Dosar": "Folder",
+  "Dosarul masinii: polite, talon...": "Vehicle folder: policies, registration...",
+  "Editeaza vehiculele": "Edit vehicles",
+  "Deschide pagina vehiculului": "Open the vehicle page",
+  "Caracteristici": "Specifications",
+  "Poza": "Photo",
+  "Acte si scadente": "Documents and due dates",
+  "Modelul 3D nu a putut fi incarcat (biblioteca three.js nu este accesibila). Adauga o poza vehiculului sau seteaza three_src catre o copie locala.": "The 3D model could not be loaded (three.js is not reachable). Add a photo of the vehicle or point three_src to a local copy.",
+  "Vehicul": "Vehicle",
+  "model 3d · trage pentru rotire": "3d model · drag to rotate",
+  "randare procedurala · trage pentru rotire": "procedural render · drag to rotate",
+  "Necesita atentie: {list}": "Needs attention: {list}",
+  "Toate actele sunt in regula": "All documents are in order",
+  "prag {days}z / {km}km": "threshold {days}d / {km}km",
+  "Nicio scadenta completata": "No due dates set",
+  "Ultimul loc de parcare": "Last parking spot",
+  "Navigheaza pana la masina": "Navigate to the car",
+  "Preluat automat din senzor": "Read automatically from a sensor",
+  "{n} fisier(e) in dosar": "{n} file(s) in the folder",
+  "Dosarul nu poate fi incarcat (actualizeaza integrarea si restarteaza Home Assistant).": "The folder cannot be loaded (update the integration and restart Home Assistant).",
+  "Se incarca...": "Loading...",
+  "Poze sau PDF-uri cu actele masinii. Se deschid doar din Home Assistant.": "Photos or PDFs of the vehicle documents. They open only from Home Assistant.",
+  "niciun fisier": "no files",
+  "Adauga": "Add",
+  "Sterge": "Delete",
+  "sterge?": "delete?",
+  "Fisierul nu a putut fi sters: {err}": "The file could not be deleted: {err}",
+  "Fisierul nu a putut fi deschis: {err}": "The file could not be opened: {err}",
+  "serverul ruleaza o versiune veche a integrarii": "the server runs an old version of the integration",
+  "Incarcat: {name}.": "Uploaded: {name}.",
+  "Fisierul nu a putut fi incarcat: {err}": "The file could not be uploaded: {err}",
+  "Serverul ruleaza o versiune veche a integrarii (fara Costuri). Actualizeaza integrarea si restarteaza Home Assistant.": "The server runs an old version of the integration (without Costs). Update the integration and restart Home Assistant.",
+  "Costurile nu pot fi incarcate: {err}": "Costs cannot be loaded: {err}",
+  "Perioada": "Period",
+  "Descarca perioada aleasa ca fisier CSV (Excel)": "Download the selected period as a CSV file (Excel)",
+  "Export CSV": "Export CSV",
+  "Data": "Date",
+  "Categorie": "Category",
+  "Suma": "Amount",
+  "Nota": "Note",
+  "optional": "optional",
+  "Cantitate (kWh)": "Quantity (kWh)",
+  "Cantitate (l)": "Quantity (l)",
+  "Cantitate": "Quantity",
+  "Plin complet": "Full tank",
+  "Introdu o suma mai mare decat zero.": "Enter an amount greater than zero.",
+  "Adaugat: {what}, {amount}.": "Added: {what}, {amount}.",
+  "Fara kilometraj, alimentarea nu intra in calculul consumului.": "Without mileage, the fill-up is not used for consumption.",
+  "Cheltuiala nu a putut fi salvata: {err}": "The expense could not be saved: {err}",
+  "Exportul nu a reusit: {err}": "Export failed: {err}",
+  "Sigur?": "Sure?",
+  "Cheltuiala nu a putut fi stearsa: {err}": "The expense could not be deleted: {err}",
+  "Anul {year}": "Year {year}",
+  "Toti anii": "All years",
+  "Total": "Total",
+  "Medie pe an": "Yearly average",
+  "Cheltuieli": "Expenses",
+  "Total general": "Grand total",
+  "Cheltuieli in an": "Expenses this year",
+  "Consum mediu": "Average consumption",
+  "Combustibil pe km": "Fuel per km",
+  "Km masurati": "Measured km",
+  "Nicio cheltuiala in perioada aleasa. Adaug-o din formularul de mai sus.": "No expenses in the selected period. Add one with the form above.",
+  "(partial)": "(partial)",
+  "Sterge (id {id})": "Delete (id {id})",
+  "Inca nu ai inregistrat cheltuieli pentru acest vehicul.": "No expenses recorded for this vehicle yet.",
+  "Titlu (gol = numele vehiculului)": "Title (empty = vehicle name)",
+  "Vehicul implicit": "Default vehicle",
+  "Rotire automata": "Auto-rotate",
+  "Buton comutare poza": "Photo toggle button",
+  "Viteza de rotire": "Rotation speed",
+  "Buton Themes (culorile se aleg din card)": "Themes button (colors are chosen in the card)",
+  "Buton Costuri (istoricul cheltuielilor)": "Costs button (expense history)",
+  "Buton Dosar (poze si PDF-uri cu actele)": "Folder button (photos and PDFs of documents)",
+  "Mod compact (pentru pagina principala)": "Compact mode (for the home page)",
+  "Acte afisate in modul compact": "Documents shown in compact mode",
+  "Pagina deschisa din modul compact (ex. /lovelace/masini)": "Page opened from compact mode (e.g. /lovelace/cars)",
+  "Acte afisate (nimic bifat: cele 5 de baza + actele completate)": "Documents shown (none checked: the 5 basic ones + any filled in)",
+  "Caracteristici afisate (nimic bifat: toate)": "Specifications shown (none checked: all)",
+  "Sursa three.js": "three.js source",
+  "Garaj": "Garage",
+  "Titlu": "Title",
+  "Acte": "Documents",
+  "necompletate": "not set",
+  "Consum": "Consumption",
+  "Costuri {year}": "Costs {year}",
+  "{label} (+{n} acte)": "{label} (+{n} more)",
+  "Niciun vehicul. Adauga unul din Setari › Dispozitive si servicii › Vehicle Manager.": "No vehicles. Add one in Settings › Devices & services › Vehicle Manager.",
+  "Pagina deschisa la atingerea unui vehicul (gol = detaliile vehiculului)": "Page opened when tapping a vehicle (empty = vehicle details)",
+  "Niciun vehicul gasit. Adauga unul din <code>Setari &rsaquo; Dispozitive si servicii &rsaquo; Adauga integrare &rsaquo; Vehicle Manager</code>.": "No vehicle found. Add one in <code>Settings &rsaquo; Devices &amp; services &rsaquo; Add integration &rsaquo; Vehicle Manager</code>."
+};
 
 console.info(
   `%c VEHICLE-MANAGER-CARD %c ${CARD_VERSION} `,
@@ -54,7 +280,36 @@ const SPEC_ROWS = [
   { key: "engine_capacity", label: "Capacitate motor", icon: "mdi:engine", unit: "cm³" },
   { key: "fuel_type", label: "Combustibil", icon: "mdi:gas-station", useLabel: "fuel_label" },
   { key: "license_plate", label: "Nr. inmatriculare", icon: "mdi:card-text-outline" },
+  { key: "parking", label: "Parcare", icon: "mdi:car-brake-parking" },
 ];
+
+/* "12 zile", "expirat de 3 z", "depasit 1.400 km" */
+function shortRemaining(document_) {
+  const { days, km_remaining: km } = document_;
+  if (days !== null && days !== undefined) {
+    if (days < 0) return t("expirat de {n} z", { n: Math.abs(days) });
+    if (days === 0) return t("azi");
+    if (days === 1) return t("maine");
+    return t("{n} zile", { n: days });
+  }
+  if (km !== null && km !== undefined) {
+    return km < 0 ? t("depasit {km} km", { km: formatNumber(Math.abs(km)) }) : `${formatNumber(km)} km`;
+  }
+  return "—";
+}
+
+/* "acum 5 min", "acum 3 h", "acum 2 zile" */
+function timeAgo(iso) {
+  const then = new Date(iso).getTime();
+  if (Number.isNaN(then)) return "";
+  const minutes = Math.max(0, Math.round((Date.now() - then) / 60000));
+  if (minutes < 1) return t("chiar acum");
+  if (minutes < 60) return t("acum {n} min", { n: minutes });
+  const hours = Math.round(minutes / 60);
+  if (hours < 24) return t("acum {n} h", { n: hours });
+  const days = Math.round(hours / 24);
+  return days === 1 ? t("ieri") : t("acum {n} zile", { n: days });
+}
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -66,7 +321,7 @@ function formatNumber(value) {
   if (value === null || value === undefined || value === "") return null;
   const number = Number(value);
   if (Number.isNaN(number)) return String(value);
-  return number.toLocaleString("ro-RO");
+  return number.toLocaleString(LANG === "ro" ? "ro-RO" : "en-GB");
 }
 
 function formatDate(iso, language) {
@@ -632,6 +887,12 @@ class CarViewer {
  * Tema e salvata pe server (vehicle_manager/theme/*), deci e aceeasi pe toate
  * dispozitivele. Cheile si limitele trebuie sa ramana sincronizate cu theme.py.
  */
+const FILES_WS_SUBSCRIBE = "vehicle_manager/files/subscribe";
+const FILES_WS_DELETE = "vehicle_manager/files/delete";
+const FILES_URL = "/api/vehicle_manager/files";
+/* Pe langa acte: talon, cartea masinii etc. (GENERAL_SLOT din files.py) */
+const FILES_GENERAL = ["general", "Alte documente (talon, cartea masinii...)", "mdi:folder-outline"];
+
 const EXPENSES_WS_SUBSCRIBE = "vehicle_manager/expenses/subscribe";
 const EXPENSES_WS_ADD = "vehicle_manager/expenses/add";
 const EXPENSES_WS_DELETE = "vehicle_manager/expenses/delete";
@@ -1213,6 +1474,13 @@ ha-card::before {
   font-size: calc(13.5px * var(--vm-fs)); font-weight: 600; text-align: right;
   display: inline-flex; align-items: center; gap: 6px;
 }
+.spec .nav {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 7px;
+  color: var(--vm-accent); border: 1px solid color-mix(in srgb, var(--vm-accent) 55%, transparent);
+}
+.spec .nav ha-icon { --mdc-icon-size: 16px; color: var(--vm-accent); }
+.spec .when { font-size: calc(12.5px * var(--vm-fs)); }
 .spec .auto {
   font: 600 calc(8.5px * var(--vm-fs))/1 var(--vm-mono); letter-spacing: .12em; text-transform: uppercase;
   padding: 3px 5px; border-radius: 5px;
@@ -1350,7 +1618,7 @@ ha-card::before {
 .empty code { color: var(--vm-accent); }
 
 /* ---- meniul Themes si panoul Costuri ---- */
-.themes, .costs {
+.themes, .costs, .files {
   margin-top: calc(12px * var(--vm-sp));
   padding: 14px;
   border-radius: calc(14px * var(--vm-r));
@@ -1359,7 +1627,48 @@ ha-card::before {
   box-shadow: 0 0 calc(24px * var(--vm-glow)) color-mix(in srgb, var(--vm-accent) 18%, transparent);
   font-size: 13px;
 }
-.themes[hidden], .costs[hidden] { display: none; }
+.themes[hidden], .costs[hidden], .files[hidden] { display: none; }
+
+/* ---- dosarul cu documente ---- */
+.f-list { display: flex; flex-direction: column; gap: 8px; }
+.f-slot {
+  display: grid; grid-template-columns: 22px minmax(110px, 180px) 1fr auto;
+  gap: 10px; align-items: center; padding: 8px 10px;
+  border-radius: 10px; border: 1px solid var(--vm-line); background: var(--vm-soft);
+}
+.f-slot > ha-icon { --mdc-icon-size: 18px; color: var(--vm-dim); }
+.f-slot .lbl { font-weight: 600; font-size: 13px; }
+.f-chips { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.f-chip {
+  display: inline-flex; align-items: center; gap: 4px; max-width: 220px;
+  padding: 4px 4px 4px 8px; border-radius: 8px; font-size: 12px;
+  color: var(--vm-text); background: color-mix(in srgb, var(--vm-accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--vm-accent) 35%, transparent);
+}
+.f-chip .open {
+  display: inline-flex; align-items: center; gap: 4px; min-width: 0; cursor: pointer;
+  background: none; border: 0; color: inherit; font: inherit; padding: 0;
+}
+.f-chip .open span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.f-chip ha-icon { --mdc-icon-size: 15px; flex: none; }
+.f-chip .del {
+  border: 0; background: none; color: var(--vm-dim); cursor: pointer;
+  font: 600 13px/1 var(--vm-mono); padding: 2px 5px; border-radius: 6px;
+}
+.f-chip .del[data-confirm="true"] { color: var(--vm-bad); }
+.f-empty { font-size: 12px; color: var(--vm-dim); }
+.f-slot .btn { padding: 7px 10px; font-size: 10px; }
+.f-slot input[type="file"] { display: none; }
+@media (max-width: 560px) {
+  .f-slot { grid-template-columns: 22px 1fr auto; }
+  .f-chips { grid-column: 1 / -1; }
+}
+
+.doc .clip {
+  display: inline-flex; align-items: center; gap: 1px;
+  font: 600 10px/1 var(--vm-mono); color: var(--vm-accent);
+}
+.doc .clip ha-icon { --mdc-icon-size: 13px; color: var(--vm-accent); }
 
 .th-head {
   display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
@@ -1467,6 +1776,7 @@ ha-card::before {
 .btn:disabled { opacity: .5; cursor: progress; }
 
 /* ---- panoul Costuri ---- */
+.btn.c-export { padding: 7px 10px; font-size: 10px; }
 .c-year {
   font: inherit; font-size: 12px; padding: 5px 8px;
   color: var(--vm-text); background: var(--vm-bg);
@@ -1554,6 +1864,8 @@ ha-card::before {
 .vm.compact .themes-btn,
 .vm.compact .costs,
 .vm.compact .costs-btn,
+.vm.compact .files,
+.vm.compact .files-btn,
 .vm.compact .settings,
 .vm.compact .hud,
 .vm.compact .bracket,
@@ -1668,6 +1980,7 @@ class VehicleManagerCard extends HTMLElement {
       show_photo_toggle: true,
       show_theme_button: true,
       show_costs_button: true,
+      show_files_button: true,
       compact: false,
       compact_items: 3,
       three_src: DEFAULT_THREE,
@@ -1677,6 +1990,7 @@ class VehicleManagerCard extends HTMLElement {
     if (this._built) {
       this._el.themeBtn.hidden = this._config.show_theme_button === false;
       this._el.costsBtn.hidden = this._config.show_costs_button === false;
+      this._el.filesBtn.hidden = this._config.show_files_button === false;
       this._applyLayout();
       this._applyTheme();
       this._viewer?.setOptions({
@@ -1692,6 +2006,7 @@ class VehicleManagerCard extends HTMLElement {
   }
 
   set hass(hass) {
+    setLanguage(hass);
     this._hass = hass;
     if (!this._built) this._build();
     this._subscribeTheme();
@@ -1714,6 +2029,8 @@ class VehicleManagerCard extends HTMLElement {
     this._unsubscribeTheme();
     this._unsubscribeCosts();
     this._costs = null;
+    this._unsubscribeFiles();
+    this._files = null;
   }
 
   /* --------------------------------------------------------------- */
@@ -1788,30 +2105,35 @@ class VehicleManagerCard extends HTMLElement {
             </span>
           </div>
           <span class="top-spacer"></span>
-          <div class="picker"><select aria-label="Selecteaza vehiculul"></select></div>
+          <div class="picker"><select aria-label="${t("Selecteaza vehiculul")}"></select></div>
           <span class="plate"></span>
-          <button class="icon-btn costs-btn" title="Costuri" aria-expanded="false">
+          <button class="icon-btn costs-btn" title="${t("Costuri")}" aria-expanded="false">
             <ha-icon icon="mdi:cash-multiple"></ha-icon>
-            <span>Costuri</span>
+            <span>${t("Costuri")}</span>
+          </button>
+          <button class="icon-btn files-btn" title="${t("Dosarul masinii: polite, talon...")}" aria-expanded="false">
+            <ha-icon icon="mdi:folder-file-outline"></ha-icon>
+            <span>${t("Dosar")}</span>
           </button>
           <button class="icon-btn themes-btn" title="Themes" aria-expanded="false">
             <ha-icon icon="mdi:palette-outline"></ha-icon>
             <span>Themes</span>
           </button>
-          <button class="icon-btn settings" title="Editeaza vehiculele">
+          <button class="icon-btn settings" title="${t("Editeaza vehiculele")}">
             <ha-icon icon="mdi:cog-outline"></ha-icon>
           </button>
-          <button class="icon-btn open-btn" title="Deschide pagina vehiculului">
+          <button class="icon-btn open-btn" title="${t("Deschide pagina vehiculului")}">
             <ha-icon icon="mdi:chevron-right"></ha-icon>
           </button>
         </header>
 
         <section class="themes" hidden></section>
         <section class="costs" hidden></section>
+        <section class="files" hidden></section>
 
         <div class="body">
           <section class="panel specs">
-            <h3>Caracteristici</h3>
+            <h3>${t("Caracteristici")}</h3>
             <div class="spec-list"></div>
           </section>
 
@@ -1827,14 +2149,14 @@ class VehicleManagerCard extends HTMLElement {
             <div class="hud"></div>
             <div class="stage-actions">
               <button class="chip view-3d" aria-pressed="true">3D</button>
-              <button class="chip view-photo" aria-pressed="false">Poza</button>
+              <button class="chip view-photo" aria-pressed="false">${t("Poza")}</button>
             </div>
           </section>
 
           <section class="panel urgent"></section>
 
           <section class="panel docs">
-            <h3>Acte si scadente</h3>
+            <h3>${t("Acte si scadente")}</h3>
             <div class="doc-list"></div>
           </section>
         </div>
@@ -1867,6 +2189,8 @@ class VehicleManagerCard extends HTMLElement {
       themes: card.querySelector(".themes"),
       costs: card.querySelector(".costs"),
       costsBtn: card.querySelector(".costs-btn"),
+      files: card.querySelector(".files"),
+      filesBtn: card.querySelector(".files-btn"),
       cardBg: card.querySelector(".card-bg"),
       stageBg: card.querySelector(".stage-bg"),
       specList: card.querySelector(".spec-list"),
@@ -1906,6 +2230,11 @@ class VehicleManagerCard extends HTMLElement {
     this._el.openBtn.addEventListener("click", openPage);
     this._applyLayout();
 
+    this._el.filesBtn.hidden = this._config.show_files_button === false;
+    this._el.filesBtn.addEventListener("click", () =>
+      this._el.files.hidden ? this._openFiles() : this._closeFiles()
+    );
+
     this._el.costsBtn.hidden = this._config.show_costs_button === false;
     this._el.costsBtn.addEventListener("click", () =>
       this._el.costs.hidden ? this._openCosts() : this._closeCosts()
@@ -1927,6 +2256,198 @@ class VehicleManagerCard extends HTMLElement {
     this._el.top.dataset.nav = String(compact && Boolean(this._config.navigation_path));
     if (compact && !this._el.themes.hidden) this._closeThemes();
     if (compact && this._costs) this._closeCosts();
+    if (compact && !this._el.files.hidden) this._closeFiles();
+  }
+
+  /* --------------------------------------------------------------- */
+  /* Dosar (documente scanate)                                        */
+  /* --------------------------------------------------------------- */
+  _subscribeFiles() {
+    this._unsubscribeFiles();
+    const entryId = this._entryId;
+    const connection = this._hass?.connection;
+    this._files = undefined;
+    if (!entryId || !connection) return;
+
+    this._filesEntry = entryId;
+    this._filesUnsub = connection
+      .subscribeMessage(
+        (message) => {
+          if (this._filesEntry !== entryId) return;
+          this._files = message.files || [];
+          /* agrafele din lista de acte + panoul, daca e deschis */
+          this._signature = null;
+          this._update();
+          if (!this._el.files.hidden) this._renderFiles();
+        },
+        { type: FILES_WS_SUBSCRIBE, entry_id: entryId }
+      )
+      .catch(() => {
+        /* integrare veche: fara dosar */
+        this._files = null;
+        if (!this._el.files.hidden) this._renderFiles();
+        return null;
+      });
+  }
+
+  _unsubscribeFiles() {
+    const pending = this._filesUnsub;
+    this._filesUnsub = null;
+    this._filesEntry = null;
+    pending?.then((unsub) => unsub?.()).catch(() => {});
+  }
+
+  _clipBadge(slot) {
+    const count = (this._files || []).filter((f) => f.slot === slot).length;
+    return count
+      ? ` <span class="clip" title="${t("{n} fisier(e) in dosar", { n: count })}"><ha-icon icon="mdi:paperclip"></ha-icon>${count}</span>`
+      : "";
+  }
+
+  _openFiles() {
+    if (!this._el.themes.hidden) this._closeThemes();
+    if (this._costs) this._closeCosts();
+    this._el.filesBtn.setAttribute("aria-expanded", "true");
+    this._el.files.hidden = false;
+    this._renderFiles();
+  }
+
+  _closeFiles() {
+    this._el.filesBtn.setAttribute("aria-expanded", "false");
+    this._el.files.hidden = true;
+    this._el.files.replaceChildren();
+  }
+
+  _setFilesStatus(text) {
+    const status = this._el.files.querySelector(".f-status");
+    if (status) status.textContent = text;
+  }
+
+  _renderFiles() {
+    const root = this._el.files;
+    const previous = root.querySelector(".f-status")?.textContent;
+    const docs = this._visibleDocuments(this._documents || {});
+    const slots = [...docs.map((d) => [d.key, t(d.label), d.icon]), [FILES_GENERAL[0], t(FILES_GENERAL[1]), FILES_GENERAL[2]]];
+
+    const head = document.createElement("div");
+    head.className = "th-head";
+    head.innerHTML = `<h2>${t("Dosar")}</h2><span class="th-status f-status"></span>`;
+    head.querySelector(".f-status").textContent =
+      previous ||
+      (this._files === null
+        ? t("Dosarul nu poate fi incarcat (actualizeaza integrarea si restarteaza Home Assistant).")
+        : this._files === undefined
+        ? t("Se incarca...")
+        : t("Poze sau PDF-uri cu actele masinii. Se deschid doar din Home Assistant."));
+
+    const list = document.createElement("div");
+    list.className = "f-list";
+    for (const [slot, label, icon] of slots) {
+      const row = document.createElement("div");
+      row.className = "f-slot";
+      row.innerHTML = `<ha-icon></ha-icon><span class="lbl"></span><span class="f-chips"></span>`;
+      row.querySelector("ha-icon").setAttribute("icon", icon);
+      row.querySelector(".lbl").textContent = label;
+
+      const chips = row.querySelector(".f-chips");
+      const items = (this._files || []).filter((f) => f.slot === slot);
+      if (!items.length) {
+        const empty = document.createElement("span");
+        empty.className = "f-empty";
+        empty.textContent = t("niciun fisier");
+        chips.append(empty);
+      }
+      for (const item of items) chips.append(this._fileChip(item));
+
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = "image/*,application/pdf";
+      const add = this._themeButton(t("Adauga"), "btn", () => input.click());
+      input.addEventListener("change", async () => {
+        const file = input.files?.[0];
+        if (!file) return;
+        add.disabled = true;
+        await this._uploadFile(slot, file);
+        add.disabled = false;
+        input.value = "";
+      });
+      row.append(add, input);
+      list.append(row);
+    }
+    root.replaceChildren(head, list);
+  }
+
+  _fileChip(item) {
+    const chip = document.createElement("span");
+    chip.className = "f-chip";
+    chip.innerHTML = `<button class="open" type="button"><ha-icon></ha-icon><span></span></button>
+      <button class="del" type="button" title="${t("Sterge")}">×</button>`;
+    chip.querySelector("ha-icon").setAttribute(
+      "icon",
+      item.mime === "application/pdf" ? "mdi:file-pdf-box" : "mdi:file-image-outline"
+    );
+    chip.querySelector(".open span").textContent = item.name;
+    chip.querySelector(".open").title = `${item.name} · ${formatNumber(Math.round(item.size / 1024))} KB`;
+    chip.querySelector(".open").addEventListener("click", () => this._openFile(item));
+    const del = chip.querySelector(".del");
+    del.addEventListener("click", async () => {
+      /* primul click cere confirmare, al doilea sterge */
+      if (del.dataset.confirm !== "true") {
+        del.dataset.confirm = "true";
+        del.textContent = t("sterge?");
+        setTimeout(() => {
+          if (del.isConnected) {
+            del.dataset.confirm = "false";
+            del.textContent = "×";
+          }
+        }, 3000);
+        return;
+      }
+      try {
+        await this._hass.callWS({ type: FILES_WS_DELETE, file_id: item.id });
+      } catch (err) {
+        this._setFilesStatus(t("Fisierul nu a putut fi sters: {err}", { err: err?.message || err?.code || err }));
+      }
+    });
+    return chip;
+  }
+
+  async _openFile(item) {
+    try {
+      const signed = await this._hass.callWS({
+        type: "auth/sign_path",
+        path: `${FILES_URL}/${this._filesEntry}/${item.id}`,
+        expires: 60,
+      });
+      window.open(this._hass.hassUrl ? this._hass.hassUrl(signed.path) : signed.path, "_blank");
+    } catch (err) {
+      this._setFilesStatus(t("Fisierul nu a putut fi deschis: {err}", { err: err?.message || err?.code || err }));
+    }
+  }
+
+  async _uploadFile(slot, file) {
+    this._setFilesStatus(t("Se incarca..."));
+    try {
+      const prepared = file.type.startsWith("image/") ? await shrinkImage(file) : file;
+      const form = new FormData();
+      form.append("file", prepared, file.name || "document");
+      const url = `${FILES_URL}/${this._filesEntry}/${slot}`;
+      const response = this._hass.fetchWithAuth
+        ? await this._hass.fetchWithAuth(url, { method: "POST", body: form })
+        : await fetch(url, {
+            method: "POST",
+            body: form,
+            headers: { Authorization: `Bearer ${this._hass.auth?.data?.access_token}` },
+          });
+      if (response.status === 404 && !this._files) {
+        throw new Error(t("serverul ruleaza o versiune veche a integrarii"));
+      }
+      const body = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(body.message || `HTTP ${response.status}`);
+      this._setFilesStatus(t("Incarcat: {name}.", { name: body.name }));
+    } catch (err) {
+      this._setFilesStatus(t("Fisierul nu a putut fi incarcat: {err}", { err: err?.message || err }));
+    }
   }
 
   /* --------------------------------------------------------------- */
@@ -1934,6 +2455,7 @@ class VehicleManagerCard extends HTMLElement {
   /* --------------------------------------------------------------- */
   _openCosts() {
     if (!this._el.themes.hidden) this._closeThemes();
+    if (!this._el.files.hidden) this._closeFiles();
     this._costs = {
       expenses: [],
       currency: null,
@@ -1976,8 +2498,8 @@ class VehicleManagerCard extends HTMLElement {
       .catch((err) => {
         this._setCostsStatus(
           err?.code === "unknown_command"
-            ? "Serverul ruleaza o versiune veche a integrarii (fara Costuri). Actualizeaza integrarea si restarteaza Home Assistant."
-            : `Costurile nu pot fi incarcate: ${err?.message || err?.code || err}`
+            ? t("Serverul ruleaza o versiune veche a integrarii (fara Costuri). Actualizeaza integrarea si restarteaza Home Assistant.")
+            : t("Costurile nu pot fi incarcate: {err}", { err: err?.message || err?.code || err })
         );
         return null;
       });
@@ -2010,21 +2532,22 @@ class VehicleManagerCard extends HTMLElement {
     const root = this._el.costs;
     root.innerHTML = `
       <div class="th-head">
-        <h2>Costuri</h2>
-        <select class="c-year" aria-label="Perioada"></select>
-        <span class="th-status c-status">Se incarca...</span>
+        <h2>${t("Costuri")}</h2>
+        <select class="c-year" aria-label="${t("Perioada")}"></select>
+        <button class="btn c-export" type="button" title="${t("Descarca perioada aleasa ca fisier CSV (Excel)")}">${t("Export CSV")}</button>
+        <span class="th-status c-status">${t("Se incarca...")}</span>
       </div>
       <div class="c-tiles"></div>
       <div class="c-bars"></div>
       <form class="c-form">
-        <label><span>Data</span><input type="date" name="date" required></label>
-        <label><span>Categorie</span><select name="category"></select></label>
-        <label><span>Suma</span><input type="number" name="amount" min="0" step="0.01" inputmode="decimal" required></label>
-        <label><span>Kilometraj</span><input type="number" name="mileage" min="0" step="1" inputmode="numeric"></label>
-        <label class="c-fuel" hidden><span class="c-qty-label">Cantitate</span><input type="number" name="quantity" min="0" step="0.01" inputmode="decimal"></label>
-        <label class="c-fuel c-check" hidden><input type="checkbox" name="full_tank" checked><span>Plin complet</span></label>
-        <label class="c-note"><span>Nota</span><input type="text" name="note" maxlength="200" placeholder="optional"></label>
-        <button class="btn primary" type="submit">Adauga</button>
+        <label><span>${t("Data")}</span><input type="date" name="date" required></label>
+        <label><span>${t("Categorie")}</span><select name="category"></select></label>
+        <label><span>${t("Suma")}</span><input type="number" name="amount" min="0" step="0.01" inputmode="decimal" required></label>
+        <label><span>${t("Kilometraj")}</span><input type="number" name="mileage" min="0" step="1" inputmode="numeric"></label>
+        <label class="c-fuel" hidden><span class="c-qty-label">${t("Cantitate")}</span><input type="number" name="quantity" min="0" step="0.01" inputmode="decimal"></label>
+        <label class="c-fuel c-check" hidden><input type="checkbox" name="full_tank" checked><span>${t("Plin complet")}</span></label>
+        <label class="c-note"><span>${t("Nota")}</span><input type="text" name="note" maxlength="200" placeholder="${t("optional")}"></label>
+        <button class="btn primary" type="submit">${t("Adauga")}</button>
       </form>
       <div class="c-list"></div>
     `;
@@ -2034,11 +2557,11 @@ class VehicleManagerCard extends HTMLElement {
     for (const [key, [label]] of Object.entries(EXPENSE_CATEGORIES)) {
       const option = document.createElement("option");
       option.value = key;
-      option.textContent = label;
+      option.textContent = t(label);
       category.append(option);
     }
     form.elements.date.value = todayIso();
-    form.querySelector(".c-qty-label").textContent = this._electric ? "Cantitate (kWh)" : "Cantitate (l)";
+    form.querySelector(".c-qty-label").textContent = this._electric ? t("Cantitate (kWh)") : t("Cantitate (l)");
     /* campurile de alimentare apar doar la categoria Combustibil */
     const toggleFuel = () => {
       const fuel = category.value === "combustibil";
@@ -2054,6 +2577,8 @@ class VehicleManagerCard extends HTMLElement {
       this._addExpense(form);
     });
 
+    root.querySelector(".c-export").addEventListener("click", () => this._exportCosts());
+
     root.querySelector(".c-year").addEventListener("change", (event) => {
       this._costs.year = event.target.value;
       this._renderCostsData();
@@ -2065,7 +2590,7 @@ class VehicleManagerCard extends HTMLElement {
   async _addExpense(form) {
     const amount = Number(form.elements.amount.value);
     if (!(amount > 0)) {
-      this._setCostsStatus("Introdu o suma mai mare decat zero.");
+      this._setCostsStatus(t("Introdu o suma mai mare decat zero."));
       return;
     }
     const message = {
@@ -2093,13 +2618,33 @@ class VehicleManagerCard extends HTMLElement {
       form.elements.quantity.value = "";
       form.elements.full_tank.checked = true;
       this._setCostsStatus(
-        `Adaugat: ${EXPENSE_CATEGORIES[message.category][0]}, ${this._money(amount)}.` +
-          (noMileageForFuel ? " Fara kilometraj, alimentarea nu intra in calculul consumului." : "")
+        t("Adaugat: {what}, {amount}.", { what: t(EXPENSE_CATEGORIES[message.category][0]), amount: this._money(amount) }) +
+          (noMileageForFuel ? " " + t("Fara kilometraj, alimentarea nu intra in calculul consumului.") : "")
       );
     } catch (err) {
-      this._setCostsStatus(`Cheltuiala nu a putut fi salvata: ${err?.message || err?.code || err}`);
+      this._setCostsStatus(t("Cheltuiala nu a putut fi salvata: {err}", { err: err?.message || err?.code || err }));
     } finally {
       submit.disabled = false;
+    }
+  }
+
+  /*
+   * Fisierul CSV vine de la server; un link semnat (valabil un minut) il face
+   * descarcabil si din aplicatia mobila, fara antetul de autentificare.
+   */
+  async _exportCosts() {
+    if (!this._costsEntry) return;
+    const period = this._costs?.year || "all";
+    try {
+      const signed = await this._hass.callWS({
+        type: "auth/sign_path",
+        path: `/api/vehicle_manager/expenses/${this._costsEntry}/${period}.csv`,
+        expires: 60,
+      });
+      const url = this._hass.hassUrl ? this._hass.hassUrl(signed.path) : signed.path;
+      window.open(url, "_blank");
+    } catch (err) {
+      this._setCostsStatus(t("Exportul nu a reusit: {err}", { err: err?.message || err?.code || err }));
     }
   }
 
@@ -2107,11 +2652,11 @@ class VehicleManagerCard extends HTMLElement {
     /* primul click cere confirmare, al doilea sterge */
     if (button.dataset.confirm !== "true") {
       button.dataset.confirm = "true";
-      button.textContent = "Sigur?";
+      button.textContent = t("Sigur?");
       setTimeout(() => {
         if (button.isConnected) {
           button.dataset.confirm = "false";
-          button.textContent = "Sterge";
+          button.textContent = t("Sterge");
         }
       }, 3000);
       return;
@@ -2121,7 +2666,7 @@ class VehicleManagerCard extends HTMLElement {
       await this._hass.callWS({ type: EXPENSES_WS_DELETE, expense_id: expense.id });
     } catch (err) {
       button.disabled = false;
-      this._setCostsStatus(`Cheltuiala nu a putut fi stearsa: ${err?.message || err?.code || err}`);
+      this._setCostsStatus(t("Cheltuiala nu a putut fi stearsa: {err}", { err: err?.message || err?.code || err }));
     }
   }
 
@@ -2136,7 +2681,7 @@ class VehicleManagerCard extends HTMLElement {
     const yearSelect = root.querySelector(".c-year");
     const years = new Set([String(new Date().getFullYear())]);
     for (const item of all) years.add(item.date.slice(0, 4));
-    const choices = [...[...years].sort().reverse().map((y) => [y, `Anul ${y}`]), ["all", "Toti anii"]];
+    const choices = [...[...years].sort().reverse().map((y) => [y, t("Anul {year}", { year: y })]), ["all", t("Toti anii")]];
     yearSelect.replaceChildren(
       ...choices.map(([value, label]) => {
         const option = document.createElement("option");
@@ -2154,14 +2699,14 @@ class VehicleManagerCard extends HTMLElement {
     /* rezumat */
     const tiles = costs.year === "all"
       ? [
-          ["Total", this._money(sum(all))],
-          ["Medie pe an", this._money(sum(all) / Math.max(1, new Set(all.map((e) => e.date.slice(0, 4))).size))],
-          ["Cheltuieli", String(all.length)],
+          [t("Total"), this._money(sum(all))],
+          [t("Medie pe an"), this._money(sum(all) / Math.max(1, new Set(all.map((e) => e.date.slice(0, 4))).size))],
+          [t("Cheltuieli"), String(all.length)],
         ]
       : [
-          [`Anul ${costs.year}`, this._money(sum(items))],
-          ["Total general", this._money(sum(all))],
-          ["Cheltuieli in an", String(items.length)],
+          [t("Anul {year}", { year: costs.year }), this._money(sum(items))],
+          [t("Total general"), this._money(sum(all))],
+          [t("Cheltuieli in an"), String(items.length)],
         ];
     /* consumul, din intervalele "plin la plin" calculate pe server */
     const segments = (costs.fuel?.segments || []).filter(
@@ -2173,9 +2718,9 @@ class VehicleManagerCard extends HTMLElement {
       const quantity = segments.reduce((total, seg) => total + seg.quantity, 0);
       const fuelCost = segments.reduce((total, seg) => total + seg.cost, 0);
       tiles.push(
-        ["Consum mediu", `${formatNumber(Math.round((quantity / fuelKm) * 1000) / 10)} ${unit}/100 km`],
-        ["Combustibil pe km", this._money(fuelCost / fuelKm)],
-        ["Km masurati", `${formatNumber(fuelKm)} km`]
+        [t("Consum mediu"), `${formatNumber(Math.round((quantity / fuelKm) * 1000) / 10)} ${unit}/100 km`],
+        [t("Combustibil pe km"), this._money(fuelCost / fuelKm)],
+        [t("Km masurati"), `${formatNumber(fuelKm)} km`]
       );
     }
     const consumptionById = new Map(segments.map((seg) => [seg.id, seg.consumption]));
@@ -2198,7 +2743,8 @@ class VehicleManagerCard extends HTMLElement {
     const max = ranked.length ? ranked[0][1] : 0;
     root.querySelector(".c-bars").replaceChildren(
       ...ranked.map(([key, amount]) => {
-        const [label, icon] = EXPENSE_CATEGORIES[key] || [key, "mdi:cash"];
+        const [rawLabel, icon] = EXPENSE_CATEGORIES[key] || [key, "mdi:cash"];
+        const label = t(rawLabel);
         const row = document.createElement("div");
         row.className = "c-bar";
         row.innerHTML = `<ha-icon></ha-icon><span class="lbl"></span>
@@ -2217,13 +2763,14 @@ class VehicleManagerCard extends HTMLElement {
       const empty = document.createElement("div");
       empty.className = "c-empty";
       empty.textContent = costs.loaded
-        ? "Nicio cheltuiala in perioada aleasa. Adaug-o din formularul de mai sus."
-        : "Se incarca...";
+        ? t("Nicio cheltuiala in perioada aleasa. Adaug-o din formularul de mai sus.")
+        : t("Se incarca...");
       list.replaceChildren(empty);
     } else {
       list.replaceChildren(
         ...items.map((expense) => {
-          const [label, icon] = EXPENSE_CATEGORIES[expense.category] || [expense.category, "mdi:cash"];
+          const [rawLabel, icon] = EXPENSE_CATEGORIES[expense.category] || [expense.category, "mdi:cash"];
+          const label = t(rawLabel);
           const row = document.createElement("div");
           row.className = "c-row";
           row.innerHTML = `<ha-icon></ha-icon>
@@ -2247,10 +2794,10 @@ class VehicleManagerCard extends HTMLElement {
             .filter(Boolean)
             .join(" · ");
           row.querySelector(".amt").textContent = this._money(expense.amount);
-          const remove = this._themeButton("Sterge", "btn c-del", () =>
+          const remove = this._themeButton(t("Sterge"), "btn c-del", () =>
             this._deleteExpense(remove, expense)
           );
-          remove.title = `Sterge (id ${expense.id})`;
+          remove.title = t("Sterge (id {id})", { id: expense.id });
           row.append(remove);
           return row;
         })
@@ -2259,7 +2806,7 @@ class VehicleManagerCard extends HTMLElement {
 
     if (costs.loaded) {
       this._setCostsStatus(
-        all.length ? "" : "Inca nu ai inregistrat cheltuieli pentru acest vehicul."
+        all.length ? "" : t("Inca nu ai inregistrat cheltuieli pentru acest vehicul.")
       );
     }
   }
@@ -2340,6 +2887,7 @@ class VehicleManagerCard extends HTMLElement {
 
   _openThemes() {
     if (this._costs) this._closeCosts();
+    if (!this._el.files.hidden) this._closeFiles();
     this._themeDraft = { ...this._baseTheme() };
     this._el.themeBtn.setAttribute("aria-expanded", "true");
     this._el.themes.hidden = false;
@@ -2370,7 +2918,7 @@ class VehicleManagerCard extends HTMLElement {
     const status = head.querySelector(".th-status");
     this._themeStatus = status;
     status.textContent =
-      "Modificarile se vad imediat; apasa Salveaza ca sa le pastrezi pe toate dispozitivele.";
+      t("Modificarile se vad imediat; apasa Salveaza ca sa le pastrezi pe toate dispozitivele.");
 
     /* presetari */
     const presets = document.createElement("div");
@@ -2404,7 +2952,7 @@ class VehicleManagerCard extends HTMLElement {
       const box = document.createElement("div");
       box.className = "th-group";
       const title = document.createElement("h4");
-      title.textContent = group.title;
+      title.textContent = t(group.title);
       box.append(title, ...group.items.map((item) => this._renderThemeControl(item, draft)));
       groups.append(box);
     }
@@ -2412,15 +2960,15 @@ class VehicleManagerCard extends HTMLElement {
     /* actiuni */
     const actions = document.createElement("div");
     actions.className = "th-actions";
-    const reset = this._themeButton("Implicit", "btn danger", () => {
+    const reset = this._themeButton(t("Implicit"), "btn danger", () => {
       this._themeDraft = { ...THEME_DEFAULTS };
       this._applyTheme();
       this._renderThemes();
     });
-    const cancel = this._themeButton("Renunta", "btn", () => this._closeThemes());
-    const save = this._themeButton("Salveaza", "btn primary", async () => {
+    const cancel = this._themeButton(t("Renunta"), "btn", () => this._closeThemes());
+    const save = this._themeButton(t("Salveaza"), "btn primary", async () => {
       save.disabled = true;
-      status.textContent = "Se salveaza...";
+      status.textContent = t("Se salveaza...");
       try {
         await this._hass.callWS({ type: THEME_WS_SAVE, theme: this._themeDraft });
         this._savedTheme = { ...this._themeDraft };
@@ -2429,8 +2977,8 @@ class VehicleManagerCard extends HTMLElement {
         save.disabled = false;
         status.textContent =
           err?.code === "unknown_command"
-            ? "Serverul ruleaza o versiune veche a integrarii (fara Themes). Copiaza tot folderul custom_components/vehicle_manager, inclusiv theme.py, si restarteaza Home Assistant."
-            : `Tema nu a putut fi salvata: ${err?.message || err?.code || err}`;
+            ? t("Serverul ruleaza o versiune veche a integrarii (fara Themes). Copiaza tot folderul custom_components/vehicle_manager, inclusiv theme.py, si restarteaza Home Assistant.")
+            : t("Tema nu a putut fi salvata: {err}", { err: err?.message || err?.code || err });
       }
     });
     actions.append(reset, cancel, save);
@@ -2445,15 +2993,15 @@ class VehicleManagerCard extends HTMLElement {
     const preview = document.createElement("div");
     preview.className = "th-bg-preview";
     if (draft.bg_image) preview.style.backgroundImage = `url("${draft.bg_image}")`;
-    else preview.textContent = "fara imagine";
+    else preview.textContent = t("fara imagine");
 
     const actions = document.createElement("div");
     actions.className = "th-bg-actions";
     const file = document.createElement("input");
     file.type = "file";
     file.accept = "image/jpeg,image/png,image/webp,image/gif";
-    const upload = this._themeButton("Incarca imagine", "btn", () => file.click());
-    const remove = this._themeButton("Elimina", "btn", () =>
+    const upload = this._themeButton(t("Incarca imagine"), "btn", () => file.click());
+    const remove = this._themeButton(t("Elimina"), "btn", () =>
       this._setDraft({ bg_image: "" }, true)
     );
     remove.hidden = !draft.bg_image;
@@ -2469,13 +3017,13 @@ class VehicleManagerCard extends HTMLElement {
     const url = document.createElement("input");
     url.type = "text";
     url.className = "th-bg-url";
-    url.placeholder = "sau un URL: /local/fundal.jpg, https://...";
+    url.placeholder = t("sau un URL: /local/fundal.jpg, https://...");
     url.value = draft.bg_image;
     url.addEventListener("change", () => {
       const value = url.value.trim();
       if (value && !BG_URL_RE.test(value)) {
         this._themeStatus.textContent =
-          "URL invalid: trebuie sa inceapa cu / sau https:// si sa nu contina spatii, ghilimele sau paranteze.";
+          t("URL invalid: trebuie sa inceapa cu / sau https:// si sa nu contina spatii, ghilimele sau paranteze.");
         return;
       }
       this._setDraft({ bg_image: value }, true);
@@ -2488,12 +3036,12 @@ class VehicleManagerCard extends HTMLElement {
 
   async _uploadBackground(file) {
     const status = this._themeStatus;
-    status.textContent = "Se pregateste imaginea...";
+    status.textContent = t("Se pregateste imaginea...");
     try {
       const prepared = await shrinkImage(file);
       const form = new FormData();
       form.append("file", prepared, file.name || "fundal");
-      status.textContent = "Se incarca imaginea...";
+      status.textContent = t("Se incarca imaginea...");
 
       const hass = this._hass;
       const response = hass.fetchWithAuth
@@ -2506,7 +3054,7 @@ class VehicleManagerCard extends HTMLElement {
 
       if (response.status === 404) {
         throw new Error(
-          "serverul ruleaza o versiune veche a integrarii; copiaza theme.py nou si restarteaza Home Assistant"
+          t("serverul ruleaza o versiune veche a integrarii; copiaza theme.py nou si restarteaza Home Assistant")
         );
       }
       const body = await response.json().catch(() => ({}));
@@ -2514,9 +3062,9 @@ class VehicleManagerCard extends HTMLElement {
 
       if (!this._themeDraft) return; /* panoul a fost inchis intre timp */
       this._setDraft({ bg_image: body.url }, true);
-      this._themeStatus.textContent = "Imagine incarcata. Apasa Salveaza ca sa o pastrezi.";
+      this._themeStatus.textContent = t("Imagine incarcata. Apasa Salveaza ca sa o pastrezi.");
     } catch (err) {
-      status.textContent = `Imaginea nu a putut fi incarcata: ${err?.message || err}`;
+      status.textContent = t("Imaginea nu a putut fi incarcata: {err}", { err: err?.message || err });
     }
   }
 
@@ -2533,7 +3081,7 @@ class VehicleManagerCard extends HTMLElement {
     const row = document.createElement("div");
     row.className = `th-row ${item.type}`;
     const label = document.createElement("label");
-    label.textContent = item.label;
+    label.textContent = t(item.label);
 
     if (item.type === "image") return this._renderBackgroundControl(row, draft);
 
@@ -2561,7 +3109,7 @@ class VehicleManagerCard extends HTMLElement {
       for (const [value, text] of item.options) {
         const option = document.createElement("option");
         option.value = value;
-        option.textContent = text;
+        option.textContent = t(text);
         input.append(option);
       }
       input.value = draft[item.key];
@@ -2621,7 +3169,7 @@ class VehicleManagerCard extends HTMLElement {
     }
     this._el.stageMsg.hidden = false;
     this._el.stageMsg.textContent =
-      "Modelul 3D nu a putut fi incarcat (biblioteca three.js nu este accesibila). Adauga o poza vehiculului sau seteaza three_src catre o copie locala.";
+      t("Modelul 3D nu a putut fi incarcat (biblioteca three.js nu este accesibila). Adauga o poza vehiculului sau seteaza three_src catre o copie locala.");
   }
 
   _setPhotoMode(enabled) {
@@ -2665,7 +3213,7 @@ class VehicleManagerCard extends HTMLElement {
       el.root.hidden = true;
       el.empty.hidden = false;
       el.empty.innerHTML =
-        "Niciun vehicul gasit. Adauga unul din <code>Setari &rsaquo; Dispozitive si servicii &rsaquo; Adauga integrare &rsaquo; Vehicle Manager</code>.";
+        t("Niciun vehicul gasit. Adauga unul din <code>Setari &rsaquo; Dispozitive si servicii &rsaquo; Adauga integrare &rsaquo; Vehicle Manager</code>.");
       return;
     }
     el.root.hidden = false;
@@ -2719,15 +3267,17 @@ class VehicleManagerCard extends HTMLElement {
     /* --- cap --- */
     el.led.dataset.status = status;
     el.title.textContent =
-      this._config.title || attributes.vehicle_name || state.attributes.friendly_name || "Vehicul";
+      this._config.title || attributes.vehicle_name || state.attributes.friendly_name || t("Vehicul");
     const subtitleParts = [vehicle.make, vehicle.model, vehicle.year].filter(Boolean);
-    el.subtitle.textContent = subtitleParts.join(" · ") || STATUS_LABEL[status] || "";
+    el.subtitle.textContent = subtitleParts.join(" · ") || t(STATUS_LABEL[status] || "");
     el.plate.textContent = vehicle.license_plate || "";
     el.plate.hidden = !vehicle.license_plate;
 
     /* --- caracteristici --- */
     el.specList.replaceChildren(
-      ...this._visibleSpecs().map((row) => this._renderSpec(row, vehicle, entities))
+      ...this._visibleSpecs()
+        .filter((row) => row.key !== "parking" || vehicle.parking || this._config.specs?.includes("parking"))
+        .map((row) => this._renderSpec(row, vehicle, entities))
     );
 
     /* --- acte --- */
@@ -2744,6 +3294,9 @@ class VehicleManagerCard extends HTMLElement {
     this._entryId = attributes.entry_id || null;
     this._mileage = vehicle.mileage ?? null;
     this._electric = vehicle.fuel_type === "electric";
+    this._documents = documents;
+    /* fisierele se urmaresc mereu (pentru agrafele din lista de acte) */
+    if (this._filesEntry !== this._entryId) this._subscribeFiles();
     if (this._costs && this._costsEntry !== this._entryId) {
       this._costs.expenses = [];
       this._costs.loaded = false;
@@ -2760,17 +3313,18 @@ class VehicleManagerCard extends HTMLElement {
     this._applyStageSource();
 
     el.hud.textContent = attributes.model_3d
-      ? "model 3d · trage pentru rotire"
-      : "randare procedurala · trage pentru rotire";
+      ? t("model 3d · trage pentru rotire")
+      : t("randare procedurala · trage pentru rotire");
 
     /* --- subsol --- */
     const attention = attributes.attention || [];
     el.footLeft.textContent = attention.length
-      ? `Necesita atentie: ${attention.join(", ")}`
+      ? t("Necesita atentie: {list}", { list: attention.map((a) => t(a)).join(", ") })
       : `Toate actele sunt in regula`;
-    el.footRight.textContent = `prag ${attributes.warn_days}z / ${formatNumber(
-      attributes.warn_km
-    )}km`;
+    el.footRight.textContent = t("prag {days}z / {km}km", {
+      days: attributes.warn_days,
+      km: formatNumber(attributes.warn_km),
+    });
   }
 
   /*
@@ -2816,7 +3370,7 @@ class VehicleManagerCard extends HTMLElement {
       node.className = "u-item";
       node.dataset.status = document_.status;
       node.innerHTML = `<span class="u-dot"></span><span class="u-text"><span class="u-name"></span><span class="u-val"></span></span>`;
-      node.querySelector(".u-name").textContent = document_.label;
+      node.querySelector(".u-name").textContent = t(document_.label);
       node.querySelector(".u-val").textContent = this._shortRemaining(document_);
       const entityId =
         entities[`${document_.key}_date`] || entities[`${document_.key}_km`] || null;
@@ -2827,34 +3381,56 @@ class VehicleManagerCard extends HTMLElement {
     if (!items.some((d) => d.status === "warning" || d.status === "expired")) {
       const ok = document.createElement("div");
       ok.className = "u-all-ok";
-      ok.innerHTML = `<ha-icon icon="mdi:shield-check"></ha-icon><span>Toate actele sunt in regula</span>`;
+      ok.innerHTML = `<ha-icon icon="mdi:shield-check"></ha-icon><span>${t("Toate actele sunt in regula")}</span>`;
       nodes.unshift(ok);
     }
     if (!items.length) {
       const empty = document.createElement("div");
       empty.className = "u-name";
-      empty.textContent = "Nicio scadenta completata";
+      empty.textContent = t("Nicio scadenta completata");
       nodes.push(empty);
     }
     this._el.urgent.replaceChildren(...nodes);
   }
 
   _shortRemaining(document_) {
-    const { days, km_remaining: km } = document_;
-    if (days !== null && days !== undefined) {
-      if (days < 0) return `expirat de ${Math.abs(days)} z`;
-      if (days === 0) return "azi";
-      if (days === 1) return "maine";
-      return `${days} zile`;
+    return shortRemaining(document_);
+  }
+
+  _renderParking(row, parking) {
+    const node = document.createElement("div");
+    node.className = "spec";
+    node.innerHTML = `<ha-icon></ha-icon><span class="k"></span><span class="v"><span class="when"></span></span>`;
+    node.querySelector("ha-icon").setAttribute("icon", row.icon);
+    node.querySelector(".k").textContent = t(row.label);
+    const when = node.querySelector(".when");
+
+    if (!parking) {
+      when.textContent = "—";
+      return node;
     }
-    if (km !== null && km !== undefined) {
-      return km < 0 ? `depasit ${formatNumber(Math.abs(km))} km` : `${formatNumber(km)} km`;
+    if (parking.state === "driving") {
+      when.textContent = t("in mers");
+    } else {
+      when.textContent = timeAgo(parking.time) || t("parcata");
     }
-    return "—";
+    if (parking.latitude != null && parking.longitude != null) {
+      const link = document.createElement("a");
+      link.className = "nav";
+      link.href = `https://www.google.com/maps/search/?api=1&query=${parking.latitude},${parking.longitude}`;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.title = parking.state === "driving" ? t("Ultimul loc de parcare") : t("Navigheaza pana la masina");
+      link.innerHTML = `<ha-icon icon="mdi:navigation-variant"></ha-icon>`;
+      node.querySelector(".v").append(link);
+    }
+    return node;
   }
 
   _renderSpec(row, vehicle, entities) {
-    const raw = row.useLabel ? vehicle[row.useLabel] : vehicle[row.key];
+    if (row.key === "parking") return this._renderParking(row, vehicle.parking);
+    /* combustibilul vine de la server in romana */
+    const raw = row.useLabel ? t(String(vehicle[row.useLabel] ?? "")) || null : vehicle[row.key];
     const entityId = row.entity ? entities[row.entity] : null;
     const clickable = Boolean(entityId);
 
@@ -2871,10 +3447,10 @@ class VehicleManagerCard extends HTMLElement {
 
     node.innerHTML = `
       <ha-icon icon="${row.key === "fuel_type" && vehicle.fuel_icon ? vehicle.fuel_icon : row.icon}"></ha-icon>
-      <span class="k">${row.label}</span>
+      <span class="k">${t(row.label)}</span>
       <span class="v">
         ${row.swatch && vehicle.color_hex ? `<span class="swatch" style="background:${vehicle.color_hex}"></span>` : ""}
-        ${row.auto && vehicle[row.auto] ? `<span class="auto" title="Preluat automat din senzor">auto</span>` : ""}
+        ${row.auto && vehicle[row.auto] ? `<span class="auto" title="${t("Preluat automat din senzor")}">auto</span>` : ""}
         <span>${value}</span>
       </span>
     `;
@@ -2912,13 +3488,13 @@ class VehicleManagerCard extends HTMLElement {
     const dateText = formatDate(document_.date, language);
     const lines = [];
     if (days !== null && days !== undefined) {
-      lines.push(days < 0 ? `expirat acum ${Math.abs(days)} zile` : `${days} zile ramase`);
+      lines.push(days < 0 ? t("expirat acum {n} zile", { n: Math.abs(days) }) : t("{n} zile ramase", { n: days }));
     }
     if (kmRemaining !== null && kmRemaining !== undefined) {
       lines.push(
         kmRemaining < 0
-          ? `depasit cu ${formatNumber(Math.abs(kmRemaining))} km`
-          : `${formatNumber(kmRemaining)} km ramasi`
+          ? t("depasit cu {km} km", { km: formatNumber(Math.abs(kmRemaining)) })
+          : t("{km} km ramasi", { km: formatNumber(kmRemaining) })
       );
     }
 
@@ -2942,9 +3518,9 @@ class VehicleManagerCard extends HTMLElement {
         <span class="num">${badge}</span>
       </span>
       <span class="meta">
-        <span class="name">${document_.label}</span>
-        <span class="main">${dateText || STATUS_LABEL[status] || "Necompletat"}</span>
-        <span class="sub">${lines.join(" · ") || "fara scadenta setata"}</span>
+        <span class="name">${t(document_.label)}${this._clipBadge(document_.key)}</span>
+        <span class="main">${dateText || t(STATUS_LABEL[status] || "Necompletat")}</span>
+        <span class="sub">${lines.join(" · ") || t("fara scadenta setata")}</span>
       </span>
       <ha-icon icon="${document_.icon}"></ha-icon>
     `;
@@ -2963,7 +3539,7 @@ if (!customElements.get("vehicle-manager-card")) {
 /* Editor grafic                                                      */
 /* ------------------------------------------------------------------ */
 
-const EDITOR_SCHEMA = [
+const editorSchema = () => [
   { name: "title", selector: { text: {} } },
   {
     name: "default_vehicle",
@@ -2987,6 +3563,7 @@ const EDITOR_SCHEMA = [
     schema: [
       { name: "show_theme_button", selector: { boolean: {} } },
       { name: "show_costs_button", selector: { boolean: {} } },
+      { name: "show_files_button", selector: { boolean: {} } },
     ],
   },
   {
@@ -3004,7 +3581,7 @@ const EDITOR_SCHEMA = [
       select: {
         multiple: true,
         mode: "list",
-        options: DOCUMENT_OPTIONS.map(([value, label]) => ({ value, label })),
+        options: DOCUMENT_OPTIONS.map(([value, label]) => ({ value, label: t(label) })),
       },
     },
   },
@@ -3014,7 +3591,7 @@ const EDITOR_SCHEMA = [
       select: {
         multiple: true,
         mode: "list",
-        options: SPEC_ROWS.map((row) => ({ value: row.key, label: row.label })),
+        options: SPEC_ROWS.map((row) => ({ value: row.key, label: t(row.label) })),
       },
     },
   },
@@ -3029,6 +3606,7 @@ const EDITOR_LABELS = {
   rotate_speed: "Viteza de rotire",
   show_theme_button: "Buton Themes (culorile se aleg din card)",
   show_costs_button: "Buton Costuri (istoricul cheltuielilor)",
+  show_files_button: "Buton Dosar (poze si PDF-uri cu actele)",
   compact: "Mod compact (pentru pagina principala)",
   compact_items: "Acte afisate in modul compact",
   navigation_path: "Pagina deschisa din modul compact (ex. /lovelace/masini)",
@@ -3051,14 +3629,14 @@ class VehicleManagerCardEditor extends HTMLElement {
   _render() {
     if (!this._form) {
       this._form = document.createElement("ha-form");
-      this._form.computeLabel = (schema) => EDITOR_LABELS[schema.name] || schema.name;
+      this._form.computeLabel = (schema) => (EDITOR_LABELS[schema.name] ? t(EDITOR_LABELS[schema.name]) : schema.name);
       this._form.addEventListener("value-changed", (event) => {
         event.stopPropagation();
         fireEvent(this, "config-changed", { config: event.detail.value });
       });
       this.replaceChildren(this._form);
     }
-    this._form.schema = EDITOR_SCHEMA;
+    this._form.schema = editorSchema();
     this._form.data = this._config;
     if (this._hass) this._form.hass = this._hass;
   }
@@ -3074,6 +3652,297 @@ if (!window.customCards.some((card) => card.type === "vehicle-manager-card")) wi
   name: "Vehicle Manager Card",
   description:
     "Card futurist pentru vehicule: model 3D rotativ, caracteristici si acte (RCA, ITP, rovinieta, revizie, distributie).",
+  preview: true,
+  documentationURL: "https://github.com/alinalecu2013/ha-vehicle-manager",
+});
+
+/* ------------------------------------------------------------------ */
+/* Cardul Garaj: toate vehiculele pe scurt                             */
+/* ------------------------------------------------------------------ */
+
+const GARAGE_STYLES = `
+:host { display: block; }
+ha-card {
+  display: block; position: relative; overflow: hidden;
+  padding: calc(14px * var(--vm-sp, 1)) calc(16px * var(--vm-sp, 1));
+  color: var(--vm-text, var(--primary-text-color));
+  font-family: var(--vm-font, inherit);
+  border: 1px solid var(--vm-line, var(--divider-color));
+  border-radius: calc(12px * var(--vm-r, 1));
+  background:
+    radial-gradient(900px 300px at 50% -20%, color-mix(in srgb, var(--vm-accent, #00e5ff) var(--vm-glow-1, 16%), transparent), transparent 70%),
+    var(--vm-bg, var(--card-background-color));
+}
+h2 {
+  margin: 0 0 12px; display: flex; align-items: center; gap: 10px;
+  font: 600 calc(11px * var(--vm-fs, 1))/1 var(--vm-mono, monospace);
+  letter-spacing: .2em; text-transform: uppercase; color: var(--vm-accent, var(--primary-color));
+}
+h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--vm-accent, var(--primary-color)), transparent); opacity: .5; }
+.list { display: flex; flex-direction: column; gap: calc(8px * var(--vm-sp, 1)); }
+.row {
+  /* coloane proportionale: aceleasi pe toate randurile, deci aliniate */
+  display: grid; grid-template-columns: 12px minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1.5fr);
+  gap: 12px; align-items: center; width: 100%; text-align: left; cursor: pointer;
+  padding: calc(10px * var(--vm-sp, 1)) 12px; font: inherit; color: inherit;
+  border-radius: calc(11px * var(--vm-r, 1));
+  background: color-mix(in srgb, var(--vm-panel-c, #121822) var(--vm-panel-p, 68%), transparent);
+  border: 1px solid color-mix(in srgb, var(--vm-line-c, #82aac8) 22%, transparent);
+}
+.row:hover { border-color: var(--vm-accent, var(--primary-color)); }
+.led { width: 10px; height: 10px; border-radius: 50%; background: var(--vm-dim, var(--secondary-text-color)); }
+.led[data-status="ok"] { background: var(--vm-ok, #22d38a); box-shadow: 0 0 calc(10px * var(--vm-glow, 1)) var(--vm-ok, #22d38a); }
+.led[data-status="warning"] { background: var(--vm-warn, #ffb020); box-shadow: 0 0 calc(10px * var(--vm-glow, 1)) var(--vm-warn, #ffb020); }
+.led[data-status="expired"] { background: var(--vm-bad, #ff4d5e); box-shadow: 0 0 calc(10px * var(--vm-glow, 1)) var(--vm-bad, #ff4d5e); }
+.who, .next { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.name { font-weight: 650; font-size: calc(14px * var(--vm-fs, 1)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sub, .k {
+  font: calc(10px * var(--vm-fs, 1))/1.3 var(--vm-mono, monospace); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--vm-dim, var(--secondary-text-color)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.v { font-size: calc(13px * var(--vm-fs, 1)); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.v[data-status="warning"] { color: var(--vm-warn, #ffb020); }
+.v[data-status="expired"] { color: var(--vm-bad, #ff4d5e); }
+.stats { display: flex; gap: 14px; justify-content: flex-end; }
+.stat { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+.empty { color: var(--vm-dim, var(--secondary-text-color)); font-size: 13px; padding: 10px 2px; }
+@media (max-width: 560px) {
+  .row { grid-template-columns: 12px minmax(0, 1fr) auto; }
+  .stats { grid-column: 2 / -1; justify-content: flex-start; }
+}
+`;
+
+class VehicleManagerGarageCard extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this._themeUnsub = null;
+  }
+
+  static getConfigElement() {
+    return document.createElement("vehicle-manager-garage-card-editor");
+  }
+
+  static getStubConfig() {
+    return { type: "custom:vehicle-manager-garage-card" };
+  }
+
+  setConfig(config) {
+    this._config = { title: t("Garaj"), ...config };
+    this._signature = null;
+    if (this._hass) this._render();
+  }
+
+  getCardSize() {
+    return 2 + this._vehicles().length;
+  }
+
+  set hass(hass) {
+    setLanguage(hass);
+    this._hass = hass;
+    this._subscribeTheme();
+    this._render();
+  }
+
+  connectedCallback() {
+    if (this._hass) this._subscribeTheme();
+  }
+
+  disconnectedCallback() {
+    const pending = this._themeUnsub;
+    this._themeUnsub = null;
+    pending?.then((unsub) => unsub?.()).catch(() => {});
+  }
+
+  /* aceeasi tema ca in cardul principal (salvata din Themes) */
+  _subscribeTheme() {
+    const connection = this._hass?.connection;
+    if (this._themeUnsub || !connection || !this.isConnected) return;
+    this._themeUnsub = connection
+      .subscribeMessage(
+        (message) => {
+          this._theme = normalizeTheme(message.theme || null);
+          this._applyTheme();
+        },
+        { type: THEME_WS_SUBSCRIBE }
+      )
+      .catch(() => null);
+  }
+
+  _applyTheme() {
+    const card = this.shadowRoot.querySelector("ha-card");
+    if (!card || !this._theme) return;
+    for (const [name, value] of Object.entries(themeToCss(this._theme))) {
+      card.style.setProperty(name, value);
+    }
+  }
+
+  _vehicles() {
+    const hass = this._hass;
+    if (!hass) return [];
+    const explicit = this._config?.vehicles;
+    const ids = Array.isArray(explicit) && explicit.length
+      ? explicit.filter((id) => hass.states[id])
+      : Object.keys(hass.states).filter(
+          (id) => id.startsWith("sensor.") && hass.states[id].attributes?.vm_card === true
+        );
+    return ids
+      .map((id) => hass.states[id])
+      .sort((a, b) =>
+        String(a.attributes.vehicle_name || a.entity_id).localeCompare(
+          String(b.attributes.vehicle_name || b.entity_id),
+          "ro"
+        )
+      );
+  }
+
+  _render() {
+    const vehicles = this._vehicles();
+    const related = (state, key) => this._hass.states[state.attributes.entities?.[key]];
+    const signature = vehicles
+      .map((s) => {
+        const cost = related(s, "expenses_year");
+        const fuel = related(s, "fuel_consumption");
+        return `${s.entity_id}|${s.last_updated}|${cost?.state}|${fuel?.state}`;
+      })
+      .join(";") + `|${this._config.title}|${this._config.navigation_path}`;
+    if (signature === this._signature) return;
+    this._signature = signature;
+
+    if (!this.shadowRoot.querySelector("ha-card")) {
+      const style = document.createElement("style");
+      style.textContent = GARAGE_STYLES;
+      const card = document.createElement("ha-card");
+      card.innerHTML = `<h2></h2><div class="list"></div>`;
+      this.shadowRoot.replaceChildren(style, card);
+      this._applyTheme();
+    }
+    const card = this.shadowRoot.querySelector("ha-card");
+    card.querySelector("h2").textContent = this._config.title || t("Garaj");
+    const list = card.querySelector(".list");
+
+    if (!vehicles.length) {
+      const empty = document.createElement("div");
+      empty.className = "empty";
+      empty.textContent = t("Niciun vehicul. Adauga unul din Setari › Dispozitive si servicii › Vehicle Manager.");
+      list.replaceChildren(empty);
+      return;
+    }
+    list.replaceChildren(...vehicles.map((state) => this._renderRow(state, related)));
+  }
+
+  _renderRow(state, related) {
+    const a = state.attributes;
+    const vehicle = a.vehicle || {};
+    const docs = Object.values(a.documents || {}).filter((d) => d.status !== "unknown");
+    /* cel mai urgent act: intai starea, apoi timpul ramas */
+    const remaining = (d) =>
+      d.days ?? (d.km_remaining !== null && d.km_remaining !== undefined ? d.km_remaining / 50 : Infinity);
+    docs.sort((x, y) => (STATUS_RANK[x.status] ?? 9) - (STATUS_RANK[y.status] ?? 9) || remaining(x) - remaining(y));
+    const next = docs[0];
+    const attention = (a.attention || []).length;
+
+    const row = document.createElement("button");
+    row.type = "button";
+    row.className = "row";
+    row.innerHTML = `
+      <span class="led"></span>
+      <span class="who"><span class="name"></span><span class="sub"></span></span>
+      <span class="next"><span class="k"></span><span class="v"></span></span>
+      <span class="stats"></span>`;
+    row.querySelector(".led").dataset.status = state.state;
+    row.querySelector(".name").textContent = a.vehicle_name || state.entity_id;
+    row.querySelector(".sub").textContent =
+      [vehicle.license_plate, [vehicle.make, vehicle.model].filter(Boolean).join(" ")].filter(Boolean).join(" · ");
+
+    if (next) {
+      row.querySelector(".k").textContent =
+        attention > 1 ? t("{label} (+{n} acte)", { label: t(next.label), n: attention - 1 }) : t(next.label);
+      const value = row.querySelector(".v");
+      value.textContent = shortRemaining(next);
+      value.dataset.status = next.status;
+    } else {
+      row.querySelector(".k").textContent = t("Acte");
+      row.querySelector(".v").textContent = t("necompletate");
+    }
+
+    const stats = row.querySelector(".stats");
+    const addStat = (label, value) => {
+      const stat = document.createElement("span");
+      stat.className = "stat";
+      stat.innerHTML = `<span class="k"></span><span class="v"></span>`;
+      stat.querySelector(".k").textContent = label;
+      stat.querySelector(".v").textContent = value;
+      stats.append(stat);
+    };
+    const cost = related(state, "expenses_year");
+    if (cost && !["unknown", "unavailable"].includes(cost.state)) {
+      const unit = cost.attributes.unit_of_measurement || "";
+      addStat(t("Costuri {year}", { year: new Date().getFullYear() }), `${formatNumber(Math.round(Number(cost.state)))} ${unit}`);
+    }
+    const fuel = related(state, "fuel_consumption");
+    if (fuel && !["unknown", "unavailable"].includes(fuel.state)) {
+      addStat(t("Consum"), `${formatNumber(Number(fuel.state))} ${fuel.attributes.unit_of_measurement || ""}`);
+    }
+    const parking = vehicle.parking;
+    if (parking) {
+      addStat(t("Parcare"), parking.state === "driving" ? t("in mers") : timeAgo(parking.time));
+    }
+
+    row.addEventListener("click", () => {
+      if (this._config.navigation_path) navigate(this._config.navigation_path);
+      else moreInfo(this, state.entity_id);
+    });
+    return row;
+  }
+}
+
+if (!customElements.get("vehicle-manager-garage-card")) {
+  customElements.define("vehicle-manager-garage-card", VehicleManagerGarageCard);
+}
+
+class VehicleManagerGarageCardEditor extends HTMLElement {
+  setConfig(config) {
+    this._config = config;
+    this._render();
+  }
+
+  set hass(hass) {
+    this._hass = hass;
+    if (this._form) this._form.hass = hass;
+  }
+
+  _render() {
+    if (!this._form) {
+      this._form = document.createElement("ha-form");
+      const labels = {
+        title: t("Titlu"),
+        navigation_path: t("Pagina deschisa la atingerea unui vehicul (gol = detaliile vehiculului)"),
+      };
+      this._form.computeLabel = (schema) => labels[schema.name] || schema.name;
+      this._form.addEventListener("value-changed", (event) => {
+        event.stopPropagation();
+        fireEvent(this, "config-changed", { config: event.detail.value });
+      });
+      this.replaceChildren(this._form);
+    }
+    this._form.schema = [
+      { name: "title", selector: { text: {} } },
+      { name: "navigation_path", selector: { navigation: {} } },
+    ];
+    this._form.data = this._config;
+    if (this._hass) this._form.hass = this._hass;
+  }
+}
+
+if (!customElements.get("vehicle-manager-garage-card-editor")) {
+  customElements.define("vehicle-manager-garage-card-editor", VehicleManagerGarageCardEditor);
+}
+
+if (!window.customCards.some((card) => card.type === "vehicle-manager-garage-card")) window.customCards.push({
+  type: "vehicle-manager-garage-card",
+  name: "Vehicle Manager Garage",
+  description: "Toate vehiculele pe scurt: starea actelor, urmatoarea scadenta, costurile anului, consumul si parcarea.",
   preview: true,
   documentationURL: "https://github.com/alinalecu2013/ha-vehicle-manager",
 });
